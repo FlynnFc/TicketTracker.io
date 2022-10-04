@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import testerImage from "../../images/tester.jpg";
+import Link from "next/link";
 const Hero = () => {
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -19,7 +20,9 @@ const Hero = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <Link href={"/dashboard"}>
+            <button className="btn btn-primary">Get Started</button>
+          </Link>
         </div>
       </div>
     </div>

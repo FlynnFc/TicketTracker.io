@@ -1,12 +1,33 @@
-import React from 'react'
-import Miniticket from '../../components/miniticket/Miniticket'
-import Navbar from '../../components/navbar/Navbar'
+import React from "react";
+import Miniticket from "../../components/miniticket/Miniticket";
+import Navbar from "../../components/navbar/Navbar";
+import { useSession } from "next-auth/react";
 
+const Index = () => {
+  const { data: session } = useSession();
 
-const index = () => {
   return (
-    <div><Navbar/><section id='minitickets' className='fixed bottom-2 left-4 flex flex-row justify-start space-x-4 w-full'><Miniticket title='Small issue with color' priority="red-500"/><Miniticket title='User forgot password' priority="red-500"/><Miniticket title='US sever maintainece' priority="green-500"/></section></div>
-  )
-}
+    <>
+      {session ? (
+        <div>
+          <Navbar />
+          <section
+            id="minitickets"
+            className="fixed bottom-2 left-2 flex w-full flex-row justify-start space-x-4"
+          >
+            <Miniticket title="US sever maintainece" priority="red-500" />
+            <Miniticket title="User forgot password" priority="orange-500" />
+            <Miniticket title="Issue with styles" priority="green-500" />
+          </section>
+        </div>
+      ) : (
+        <>
+          <Navbar />
+          <h3 className="text-center text-3xl font-bold">{`You don't have permission to acsess this page`}</h3>
+        </>
+      )}
+    </>
+  );
+};
 
-export default index
+export default Index;
