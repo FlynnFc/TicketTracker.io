@@ -12,8 +12,12 @@ const Hero = () => {
             A New look at Team, Project and Ticket Management systems.
           </p>
           <section className="py-6 ">
-            <p className="text-base font-bold text-info">
-              This site is still currently in early development.
+            <p className="text-base ">
+              This site is still currently in early development. You can follow
+              progress on the site on{" "}
+              <a className="font-bold" href="https://dev.to/flynnfc">
+                this blog
+              </a>
             </p>
           </section>
           <Link href={"demo/dashboard"}>
