@@ -11,4 +11,4 @@ export default {
   component: Miniticket,
 } as ComponentMeta<typeof Miniticket>;
 
-export const Primary: ComponentStory<typeof Miniticket> = () => <Miniticket priority='low'></Miniticket>;
+export const Primary: ComponentStory<typeof Miniticket> = () => <Miniticket title='test' priority='low'></Miniticket>;
