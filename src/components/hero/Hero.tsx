@@ -15,7 +15,12 @@ const Hero = () => {
             <p className="text-base ">
               This site is still currently in early development. You can follow
               progress on the site on{" "}
-              <a className="font-bold" href="https://dev.to/flynnfc">
+              <a
+                className="font-bold"
+                target="_blank"
+                href="https://dev.to/flynnfc"
+                rel="noreferrer"
+              >
                 this blog
               </a>
             </p>
