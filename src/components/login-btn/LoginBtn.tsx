@@ -7,10 +7,7 @@ export default function LoginBtn() {
         <p className="fixed left-16 text-base font-semibold">
           You are signed in as {session.user.name}
         </p>
-        <button
-          className="btn btn-outline btn-primary btn-sm"
-          onClick={() => signOut()}
-        >
+        <button className="btn" onClick={() => signOut()}>
           Sign out
         </button>
       </>

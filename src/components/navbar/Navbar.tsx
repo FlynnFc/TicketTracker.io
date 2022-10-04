@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import LoginBtn from "../login-btn/LoginBtn";
 
@@ -24,7 +25,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-primary p-2 font-semibold text-white shadow"
           >
             <li>
               <a>Mange Roles</a>
@@ -36,13 +37,27 @@ const Navbar = () => {
               <a>Projects</a>
             </li>
             <li>
-              <a>Tickets</a>
+              <Link
+                href={{
+                  pathname: "/[teamid]/tickets/",
+                  query: { teamid: "demo" },
+                }}
+              >
+                <a>Tickets</a>
+              </Link>
             </li>
           </ul>
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost text-xl normal-case">Dashboard</a>
+        <Link
+          href={{
+            pathname: "/[teamid]/dashboard",
+            query: { teamid: "demo" },
+          }}
+        >
+          <a className="btn btn-ghost text-xl normal-case">Dashboard</a>
+        </Link>
       </div>
       <div className="navbar-end">
         <LoginBtn />
