@@ -8,16 +8,16 @@ const TicketDetails = () => {
   const { ticketid } = router.query;
   console.log(router);
   return (
-    <div className="max-h-screen">
+    <div className="">
       <Navbar />
       <div className="mt-10 flex items-center justify-center">
-        <section className="w-[80%] rounded-lg border-2 border-green-500 bg-neutral p-4 shadow-lg">
+        <section className="w-[98%] rounded-lg p-4">
           <div>
-            <h2 className="m-4 text-center text-5xl font-bold text-primary-content">
-              Details for Ticket {ticketid}
-            </h2>
-            <div className="flex max-h-[42rem] flex-row justify-between">
-              <div className="w-[50%]">
+            <div className="flex max-h-[47rem] flex-row justify-between">
+              <div className="w-[50%] rounded bg-base-300 shadow-lg">
+                <h2 className="m-4 text-center text-4xl font-bold text-primary">
+                  Details for Ticket {ticketid}
+                </h2>
                 <ul className="mx-4 flex flex-row items-start justify-evenly py-4 text-2xl">
                   <li className="flex flex-col  justify-center space-x-4">
                     <h3 className="font-bold text-white">Ticket Title</h3>
