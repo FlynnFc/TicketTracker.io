@@ -4,7 +4,7 @@ export default function LoginBtn() {
   if (session?.user) {
     return (
       <>
-        <p className="fixed left-16 text-base font-semibold">
+        <p className="absolute left-16 text-base font-semibold">
           You are signed in as {session.user.name}
         </p>
         <button className="btn" onClick={() => signOut()}>
