@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import Navbar from "../../../../components/navbar/Navbar";
 import CommentSection from "../../../../components/commentsection/CommentSection";
 

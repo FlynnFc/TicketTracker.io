@@ -7,11 +7,12 @@ const Index = () => {
   return (
     <div>
       <Navbar />
-      <div className="drawer-mobile drawer">
+      <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           <section>
             <Ticketpreview
+              id="1"
               priority="red-500"
               title="This is the first ticket"
               description="Testing functionality of the first ever ticket"
