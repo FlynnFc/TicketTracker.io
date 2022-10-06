@@ -10,9 +10,9 @@ const Miniticket = (props: MiniticketProps) => {
     <div
       className={`w-96 bg-${props.priority} flex flex-row items-center justify-between rounded-lg p-4 text-primary-content`}
     >
-      <h2 className="card-title px-1">{props.title}</h2>
+      <h2 className="card-title px-1 text-primary-content">{props.title}</h2>
       <div className="card-actions justify-end">
-        <button className="btn">View Ticket</button>
+        <button className="btn text-secondary-content">View Ticket</button>
       </div>
     </div>
   );

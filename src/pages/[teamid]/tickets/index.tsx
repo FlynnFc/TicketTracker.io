@@ -1,16 +1,16 @@
-import Link from "next/link";
 import React from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Ticketpreview from "../../../components/ticketpreview/Ticketpreview";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import Drawer from "../../../components/drawer/Drawer";
 
 const Index = () => {
   return (
-    <div>
+    <div className="max-h-screen">
       <Navbar />
       <div className="drawer-mobile drawer">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content mt-[8vh]">
           <section>
             <Ticketpreview
               id="1"
@@ -26,38 +26,7 @@ const Index = () => {
             <AiOutlineArrowRight />
           </label>
         </div>
-        <div className="drawer-side">
-          <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu w-60 space-y-2 overflow-y-auto bg-base-300 p-4 text-base-content">
-            <li>
-              <Link
-                href={{
-                  pathname: "/[teamid]/tickets/create",
-                  query: { teamid: "demo" },
-                }}
-              >
-                <button className="btn btn-primary text-white">
-                  Create new Ticket
-                </button>
-              </Link>
-            </li>
-            <li>
-              <button className="btn btn-info text-white">
-                Manage Tickets
-              </button>
-            </li>
-            <li>
-              <Link
-                href={{
-                  pathname: "/[teamid]/tickets/[ticketid]",
-                  query: { teamid: "demo", ticketid: 2 },
-                }}
-              >
-                <a href="./tickets/Sheesh">Chomp</a>
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <Drawer />
       </div>
     </div>
   );

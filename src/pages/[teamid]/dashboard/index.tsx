@@ -15,9 +15,9 @@ const Index = () => {
             id="minitickets"
             className="fixed bottom-2 left-2 flex w-full flex-row justify-start space-x-4"
           >
-            <Miniticket title="US sever maintainece" priority="red-500" />
-            <Miniticket title="User forgot password" priority="green-500" />
-            <Miniticket title="Issue with styles" priority="green-500" />
+            <Miniticket title="US sever maintainece" priority="warning" />
+            <Miniticket title="User forgot password" priority="success" />
+            <Miniticket title="Issue with styles" priority="error" />
           </section>
         </div>
       ) : (

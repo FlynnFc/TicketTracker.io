@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
-  safelist: ["bg-red-500", "bg-green-500", "bg-orange-500"],
+  safelist: ["bg-warning", "bg-error", "bg-success"],
   theme: {
     extend: {
       fontFamily: {
@@ -10,7 +10,7 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: ["business"],
+    themes: ["dark"],
   },
   plugins: [require("daisyui")],
 };

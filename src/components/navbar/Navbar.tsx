@@ -4,7 +4,7 @@ import LoginBtn from "../login-btn/LoginBtn";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-neutral">
+    <div className="navbar fixed z-50 bg-neutral">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -25,7 +25,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-primary p-2 font-semibold text-white shadow"
+            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-primary p-2 font-semibold text-primary-content shadow"
           >
             <li>
               <a>Mange Roles</a>
