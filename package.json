@@ -23,6 +23,7 @@
     "react-animation": "^1.2.2",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
     "zod": "^3.18.0"
   },
   "devDependencies": {

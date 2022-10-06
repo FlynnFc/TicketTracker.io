@@ -2,12 +2,13 @@ import Link from "next/link";
 import React from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import Ticketpreview from "../../../components/ticketpreview/Ticketpreview";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 const Index = () => {
   return (
     <div>
       <Navbar />
-      <div className="drawer drawer-mobile">
+      <div className="drawer-mobile drawer">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           <section>
@@ -20,9 +21,9 @@ const Index = () => {
           </section>
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn btn-primary drawer-button absolute top-16 left-0 lg:hidden"
           >
-            Open drawer
+            <AiOutlineArrowRight />
           </label>
         </div>
         <div className="drawer-side">
@@ -46,7 +47,14 @@ const Index = () => {
               </button>
             </li>
             <li>
-              <a href="./tickets/Sheesh">Chomp</a>
+              <Link
+                href={{
+                  pathname: "/[teamid]/tickets/[ticketid]",
+                  query: { teamid: "demo", ticketid: 2 },
+                }}
+              >
+                <a href="./tickets/Sheesh">Chomp</a>
+              </Link>
             </li>
           </ul>
         </div>
