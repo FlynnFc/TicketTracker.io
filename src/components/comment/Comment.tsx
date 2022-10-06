@@ -18,10 +18,15 @@ const Comment = (props: CommentProps) => {
       </div>
       <section className="flex flex-col rounded bg-primary p-4 shadow-lg">
         <div className="flew-row flex space-x-4">
-          <h4>{props.name}</h4>
-          <span>{props.time}</span>
+          <h4 className="text-primary-content">{props.name}</h4>
+          <span className="text-secondary-content">{props.time}</span>
         </div>
-        <p className="py-4">{props.message}</p>
+        <p
+          className="py-4 text-primary-content
+"
+        >
+          {props.message}
+        </p>
       </section>
     </div>
   );
