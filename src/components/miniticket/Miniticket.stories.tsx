@@ -1,14 +1,16 @@
 // Button.stories.ts|tsx
 
-import React from 'react';
+import React from "react";
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Miniticket from './Miniticket';
+import Miniticket from "./Miniticket";
 
 export default {
-  title: 'Miniticket',
+  title: "Miniticket",
   component: Miniticket,
 } as ComponentMeta<typeof Miniticket>;
 
-export const Primary: ComponentStory<typeof Miniticket> = () => <Miniticket title='test' priority='low'></Miniticket>;
+export const Primary: ComponentStory<typeof Miniticket> = () => (
+  <Miniticket id="1" title="test" priority="low"></Miniticket>
+);

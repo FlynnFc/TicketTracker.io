@@ -20,7 +20,7 @@ const Miniticket = (props: MiniticketProps) => {
     <div
       className={`w-96 bg-${bgColor} flex flex-row items-center justify-between rounded-lg p-4 text-primary-content`}
     >
-      <h2 className="card-title px-1 text-primary-content">{props.title}</h2>
+      <h2 className="card-title px-1 text-neutral-content">{props.title}</h2>
       <div className="card-actions justify-end">
         <Link
           href={{
@@ -28,7 +28,7 @@ const Miniticket = (props: MiniticketProps) => {
             query: { teamid: "demo", ticketid: props.id },
           }}
         >
-          <button className="btn text-secondary-content">View Ticket</button>
+          <button className="btn text-neutral-content">View Ticket</button>
         </Link>
       </div>
     </div>

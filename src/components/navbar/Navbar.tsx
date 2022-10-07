@@ -76,7 +76,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <LoginBtn />
-        <button className="btn btn-ghost btn-circle ml-2">
+        <button disabled className="btn btn-ghost btn-circle ml-2">
           <div className="indicator">
             <svg
               xmlns="http://www.w3.org/2000/svg"

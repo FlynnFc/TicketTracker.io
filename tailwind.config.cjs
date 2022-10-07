@@ -17,7 +17,7 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: ["forest"],
+    themes: ["business"],
   },
   plugins: [require("daisyui")],
 };
