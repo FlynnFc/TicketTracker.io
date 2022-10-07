@@ -23,9 +23,25 @@ export async function getServerSideProps() {
   };
 }
 
-const Index = ({ ticketprop }) => {
+type newTicketProps = {
+  map(
+    arg0: (el: {
+      priority: string;
+      description: string;
+      title: string;
+      id: string;
+    }) => JSX.Element
+  ): React.ReactNode;
+  title: string;
+  description: string;
+  id: string;
+  priority: string;
+  ticketType: string;
+  assignedTo: string;
+};
+
+const Index = (props: { ticketprop: newTicketProps }) => {
   const { data: session } = useSession();
-  console.log(ticketprop);
   return (
     <>
       {session ? (
@@ -35,7 +51,7 @@ const Index = ({ ticketprop }) => {
             id="minitickets"
             className="fixed bottom-2 left-2 flex w-full flex-row justify-start space-x-4"
           >
-            {ticketprop.map(
+            {props.ticketprop.map(
               (el: {
                 priority: string;
                 description: string;

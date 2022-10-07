@@ -24,7 +24,24 @@ export async function getServerSideProps() {
   };
 }
 
-const Index = ({ ticketprop }) => {
+type NewTicketProp = {
+  map(
+    arg0: (el: {
+      priority: string;
+      description: string;
+      title: string;
+      id: string;
+    }) => JSX.Element
+  ): import("react").ReactNode;
+  title: string;
+  description: string;
+  id: string;
+  priority: string;
+  ticketType: string;
+  assignedTo: string;
+};
+
+const Index = (props: { ticketprop: NewTicketProp }) => {
   return (
     <div className="max-h-screen">
       <Navbar />
@@ -32,7 +49,7 @@ const Index = ({ ticketprop }) => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content mt-[8vh]">
           <section className="ml-6 flex flex-wrap items-baseline justify-start space-x-6">
-            {ticketprop.map(
+            {props.ticketprop.map(
               (el: {
                 priority: string;
                 description: string;
