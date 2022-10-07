@@ -21,9 +21,11 @@ export const authOptions: NextAuthOptions = {
         response_type: "code"
       }
     },
-    
-  })],  
-   secret: process.env.sercet,  
+  }),],
+  pages:{
+    signIn: "/auth/signin"
+  },
+  secret: process.env.sercet,  
 
   // Include user.id on session
   callbacks: {
