@@ -1,5 +1,8 @@
 import Link from "next/link";
 import React from "react";
+import { HiOutlineUserAdd, HiOutlineUserGroup } from "react-icons/hi";
+import { AiOutlineProject } from "react-icons/ai";
+import { BiTask } from "react-icons/bi";
 import LoginBtn from "../login-btn/LoginBtn";
 
 const Navbar = () => {
@@ -28,13 +31,22 @@ const Navbar = () => {
             className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-primary p-2 font-semibold text-primary-content shadow"
           >
             <li>
-              <a>Mange Roles</a>
+              <a>
+                <HiOutlineUserAdd />
+                Mange Roles
+              </a>
             </li>
             <li>
-              <a>Manage Projet users</a>
+              <a>
+                <HiOutlineUserGroup />
+                Manage Projet users
+              </a>
             </li>
             <li>
-              <a>Projects</a>
+              <a>
+                <AiOutlineProject />
+                Projects
+              </a>
             </li>
             <li>
               <Link
@@ -43,7 +55,10 @@ const Navbar = () => {
                   query: { teamid: "demo" },
                 }}
               >
-                <a>Tickets</a>
+                <a>
+                  <BiTask />
+                  Tickets
+                </a>
               </Link>
             </li>
           </ul>
