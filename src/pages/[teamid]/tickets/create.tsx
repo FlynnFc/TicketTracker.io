@@ -12,7 +12,7 @@
 // }
 
 // async function saveTicket(ticket: any) {
-//   const response = await fetch("/api/contacts", {
+//   const response = await fetch("/api/tickets", {
 //     method: "POST",
 //     body: JSON.stringify(ticket),
 //   });

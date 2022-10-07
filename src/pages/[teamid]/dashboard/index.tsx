@@ -4,18 +4,10 @@ import Navbar from "../../../components/navbar/Navbar";
 import { useSession } from "next-auth/react";
 import { PrismaClient } from "@prisma/client";
 
-type TicketProps = {
-  title: string;
-  description: string;
-  id: string;
-  priority: string;
-  ticketType: string;
-  assignedTo: string;
-};
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const tickets: TicketProps[] = await prisma.ticket.findMany();
+  const tickets = await prisma.ticket.findMany();
   return {
     props: {
       ticketprop: tickets,
