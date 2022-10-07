@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type TicketpreviewProps = {
   priority: string;
@@ -9,9 +9,18 @@ type TicketpreviewProps = {
 };
 
 const Ticketpreview = (props: TicketpreviewProps) => {
+  const [bgColor, setBgColor] = useState("");
+  useEffect(() => {
+    if (props.priority === "high") {
+      setBgColor("error");
+    } else if (props.priority === "medium") {
+      setBgColor("warning");
+    } else setBgColor("success");
+  }, [props.priority]);
+
   return (
     <div
-      className={`card w-96 border border-${props.priority} flex flex-col items-center justify-center bg-base-300 shadow-xl`}
+      className={`card w-96 border-2 border-${bgColor}  flex flex-col items-start justify-center bg-neutral shadow-xl`}
     >
       <div className="card-body ">
         <h2 className="card-title ">{props.title}</h2>
