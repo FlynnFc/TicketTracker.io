@@ -2,16 +2,16 @@ import { getProviders, signIn } from "next-auth/react";
 
 import styles from "../../styles/Signin.module.css";
 import { FcGoogle } from "react-icons/fc";
-export default function SignIn({ providers }) {
-  console.log(providers);
+export default function SignIn(props: { providers: any }) {
+  console.log(props.providers);
   return (
     <div
       className="mt-[20%] flex items-center justify-center"
       style={{ overflow: "hidden", position: "relative" }}
     >
       <div className="flex w-96 items-center justify-center rounded-md bg-primary p-6 shadow-md">
-        {providers &&
-          Object.values(providers).map((provider) => (
+        {props.providers &&
+          Object.values(props.providers).map((provider: any) => (
             <div
               className="flex justify-center"
               key={provider.name}
