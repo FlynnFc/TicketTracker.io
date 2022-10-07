@@ -51,6 +51,7 @@ model User {
     name          String?
     email         String?   @unique
     emailVerified DateTime?
+    permissions   String
     image         String?
     accounts      Account[]
     sessions      Session[]
@@ -62,4 +63,13 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Ticket {
+    id          String @id @default(cuid())
+    title       String
+    description String
+    priority    String
+    ticketType  String
+    assignedTo  String
 }
