@@ -64,11 +64,27 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
+model Comments {
+    name    String
+    date    String
+    avatar  String
+    message String
+    Ticket  Ticket[]
+
+    @@unique([name, date, avatar, message])
+}
+
 model Ticket {
-    id          String @id @default(cuid())
-    title       String
-    description String
-    priority    String
-    ticketType  String
-    assignedTo  String
+    id             String   @id @default(cuid())
+    title          String
+    description    String
+    priority       String
+    ticketType     String
+    assignedTo     String
+    history        String
+    comments       Comments @relation(fields: [commentName, commentDate, commentAvatar, commentMessage], references: [name, date, avatar, message])
+    commentName    String
+    commentDate    String
+    commentAvatar  String
+    commentMessage String
 }

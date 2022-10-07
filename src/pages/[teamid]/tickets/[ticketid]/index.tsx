@@ -4,11 +4,36 @@ import Navbar from "../../../../components/navbar/Navbar";
 import CommentSection from "../../../../components/commentsection/CommentSection";
 import Drawer from "../../../../components/drawer/Drawer";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { PrismaClient } from "@prisma/client";
 
-const TicketDetails = () => {
+const prisma = new PrismaClient();
+
+type TicketProps = {
+  title: string;
+  description: string;
+  id: string;
+  priority: string;
+  ticketType: string;
+  assignedTo: string;
+};
+
+export async function getServerSideProps() {
+  const tickets = await prisma.ticket.findUnique({
+    where: {
+      id: "cl8ym0pgi0000j9osycc0hbxz",
+    },
+  });
+  return {
+    props: {
+      ticketprop: tickets,
+    },
+  };
+}
+
+const TicketDetails = ({ ticketprop }) => {
   const router = useRouter();
   const { ticketid } = router.query;
-  console.log(router);
+  console.log(ticketprop);
   return (
     <div className="">
       <Navbar />
@@ -21,27 +46,32 @@ const TicketDetails = () => {
                 <div className="flex max-h-[47rem] justify-evenly">
                   <div className="flex w-[50%] flex-col items-center justify-between rounded bg-base-300 shadow-lg">
                     <div>
-                      <h2 className="m-4 text-center text-4xl font-bold text-primary">
-                        Details for Ticket {ticketid}
+                      <h2 className="m-4 flex flex-col text-center text-4xl font-bold text-primary">
+                        Details for Ticket{" "}
+                        <span className="text-base">id: {ticketid}</span>
                       </h2>
-                      <ul className="mx-4 flex flex-row items-start justify-start space-x-10 py-4 text-2xl">
+                      <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-2xl">
                         <li className="flex flex-col  justify-center">
                           <h3 className="font-bold">Ticket Title</h3>
-                          <p>Example Title</p>
+                          <p>{ticketprop.title}</p>
                         </li>
-                        <li className="flex flex-col justify-center">
+                        <li className="flex max-w-sm flex-col justify-center">
                           <h4 className="font-bold ">Ticket Description</h4>
-                          <p>Example Description</p>
+                          <p>{ticketprop.description}</p>
                         </li>
                         <li className="flex flex-col justify-center">
                           <h4 className="font-bold ">Ticket type</h4>
-                          <p>Bug</p>
+                          <p>{ticketprop.ticketType}</p>
                         </li>
                       </ul>
-                      <ul className="mx-4 flex flex-row items-start justify-start space-x-10 py-4 text-2xl">
+                      <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-2xl">
                         <li className="flex flex-col">
                           <h4 className="font-bold ">Assigned Developer</h4>
-                          <p>Example Dev</p>
+                          <p>
+                            {ticketprop.assignedTo
+                              ? ticketprop.assignedTo
+                              : "No one assigned"}
+                          </p>
                         </li>
                         <li className="flex flex-col items-start">
                           <h4 className="font-bold ">Project</h4>
@@ -49,7 +79,7 @@ const TicketDetails = () => {
                         </li>
                         <li className="flex flex-col">
                           <h4 className="font-bold ">Priority</h4>
-                          <p>high</p>
+                          <p>{ticketprop.priority}</p>
                         </li>
                       </ul>
                     </div>
