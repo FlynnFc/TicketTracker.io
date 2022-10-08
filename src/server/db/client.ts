@@ -7,7 +7,7 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
-const prisma =
+export const prisma =
   global.prisma ||
   new PrismaClient({
     log:
@@ -17,4 +17,3 @@ const prisma =
 if (env.NODE_ENV !== "production") {
   global.prisma = prisma;
 }
-export default prisma
