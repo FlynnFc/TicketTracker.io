@@ -1,20 +1,21 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '../../server/db/client'
 
-import { PrismaClient, Prisma } from '@prisma/client';
+export default async function assetHandler(req:any, res:any) {
+  const { method } = req
 
-const prisma = new PrismaClient();
-
-// eslint-disable-next-line import/no-anonymous-default-export
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
+  switch (method) {
+    case 'GET':
+      try {
+        const tickets = await prisma.ticket.findMany()
+        res.status(200).json(tickets)
+      } catch (e) {
+        console.error('Request error', e)
+        res.status(500).json({ error: 'Error fetching posts' })
+      }
+      break
+    default:
+      res.setHeader('Allow', ['GET'])
+      res.status(405).end(`Method ${method} Not Allowed`)
+      break
   }
-
-  try {
-    const ticket: Prisma.TicketCreateInput = JSON.parse(req.body);
-    const savedContact = await prisma.ticket.create({ data: ticket });
-    res.status(200).json(savedContact);
-  } catch (err) {
-    res.status(400).json({ message: 'Something went wrong' });
-  }
-};
+}

@@ -2,15 +2,16 @@ import React from "react";
 import Miniticket from "../../../components/miniticket/Miniticket";
 import Navbar from "../../../components/navbar/Navbar";
 import { useSession } from "next-auth/react";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const tickets = await prisma.ticket.findMany();
+  const res = await fetch("http://localhost:3000/api/tickets");
+  if (!res.ok) {
+    console.log("error");
+  }
+  const data = await res.json();
   return {
     props: {
-      ticketprop: tickets,
+      ticketprop: data,
     },
   };
 }
@@ -34,9 +35,10 @@ type newTicketProps = {
 
 const Index = (props: { ticketprop: newTicketProps }) => {
   const { data: session } = useSession();
+  console.log(props.ticketprop);
   return (
     <>
-      {session ? (
+      {!session ? (
         <div>
           <Navbar />
           <section
