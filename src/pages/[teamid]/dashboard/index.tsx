@@ -38,7 +38,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
   console.log(props.ticketprop);
   return (
     <>
-      {!session ? (
+      {session ? (
         <div>
           <Navbar />
           <section
