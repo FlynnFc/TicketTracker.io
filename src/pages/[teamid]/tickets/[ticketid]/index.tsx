@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../../components/navbar/Navbar";
 import CommentSection from "../../../../components/commentsection/CommentSection";
 import Drawer from "../../../../components/drawer/Drawer";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { useState } from "react";
 
 type TicketProps = {
   title: string;
@@ -17,28 +15,34 @@ type TicketProps = {
   assignedTo: string;
 };
 
-export async function getServerSideProps() {
-  const tickets = await prisma.ticket.findUnique({
-    where: {
-      id: "cl8ym0pgi0000j9osycc0hbxz",
-    },
-  });
-  return {
-    props: {
-      ticketprop: tickets,
-    },
-  };
-}
-
-const TicketDetails = (props: { ticketprop: TicketProps }) => {
+const TicketDetails = () => {
+  const [pageData, setPageData] = useState<TicketProps>();
   const router = useRouter();
   const { ticketid } = router.query;
-  console.log(props.ticketprop);
+
+  async function ticketFetchIdHandler(ticketid: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const ticketbyid = await fetch(
+      "https://www.tickettracker.io/api/ticketbyid",
+      {
+        method: "GET",
+        headers: { ticketId: ticketid },
+      }
+    );
+    if (!ticketbyid.ok) {
+      console.log("error");
+    }
+    const data = await ticketbyid.json();
+    setPageData(() => data);
+  }
+  useEffect(() => {
+    ticketFetchIdHandler(ticketid);
+  }, [ticketid]);
 
   return (
     <div className="">
       <Navbar />
-      {props.ticketprop && (
+      {pageData && (
         <div className="drawer-mobile drawer">
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content mt-[5vh] flex flex-col items-start justify-start">
@@ -55,23 +59,23 @@ const TicketDetails = (props: { ticketprop: TicketProps }) => {
                         <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-2xl">
                           <li className="flex flex-col  justify-center">
                             <h3 className="font-bold">Ticket Title</h3>
-                            <p>{props.ticketprop.title}</p>
+                            <p>{pageData.title}</p>
                           </li>
                           <li className="flex max-w-sm flex-col justify-center">
                             <h4 className="font-bold ">Ticket Description</h4>
-                            <p>{props.ticketprop.description}</p>
+                            <p>{pageData.description}</p>
                           </li>
                           <li className="flex flex-col justify-center">
                             <h4 className="font-bold ">Ticket type</h4>
-                            <p>{props.ticketprop.ticketType}</p>
+                            <p>{pageData.ticketType}</p>
                           </li>
                         </ul>
                         <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-2xl">
                           <li className="flex flex-col">
                             <h4 className="font-bold ">Assigned Developer</h4>
                             <p>
-                              {props.ticketprop.assignedTo
-                                ? props.ticketprop.assignedTo
+                              {pageData.assignedTo
+                                ? pageData.assignedTo
                                 : "No one assigned"}
                             </p>
                           </li>
@@ -81,7 +85,7 @@ const TicketDetails = (props: { ticketprop: TicketProps }) => {
                           </li>
                           <li className="flex flex-col">
                             <h4 className="font-bold ">Priority</h4>
-                            <p>{props.ticketprop.priority}</p>
+                            <p>{pageData.priority}</p>
                           </li>
                         </ul>
                       </div>
@@ -144,3 +148,6 @@ const TicketDetails = (props: { ticketprop: TicketProps }) => {
 };
 
 export default TicketDetails;
+function then(arg0: (ticketbyid: any) => any) {
+  throw new Error("Function not implemented.");
+}
