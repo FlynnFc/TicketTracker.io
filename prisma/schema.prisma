@@ -62,30 +62,18 @@ model VerificationToken {
 }
 
 model Comments {
-    name     String
-    date     DateTime @default(now())
-    avatar   String
-    message  String
-    id       String   @id @default(cuid())
-    ticketId String?
-    Ticket   Ticket?  @relation(fields: [ticketId], references: [id])
+    name    String
+    date    DateTime @default(now())
+    avatar  String
+    message String
+    id      String   @id @default(cuid())
 }
 
 model Ticket {
-    id          String     @id @default(cuid())
+    id          String @id @default(cuid())
     title       String
     description String
     priority    String
     ticketType  String
     assignedTo  String
-    comments    Comments[]
-    Project     Project?   @relation(fields: [projectId], references: [id])
-    projectId   String?
-}
-
-model Project {
-    id          String   @id @default(cuid())
-    title       String
-    description String
-    tickets     Ticket[]
 }
