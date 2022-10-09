@@ -4,13 +4,14 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import Drawer from "../../../components/drawer/Drawer";
 
 export async function getServerSideProps() {
-  const tickets = await fetch("https://www.tickettracker.io/api/tickets");
-  if (!tickets.ok) {
+  const res = await fetch("https://www.tickettracker.io/api/tickets");
+  if (!res.ok) {
     console.log("error");
   }
+  const data = await res.json();
   return {
     props: {
-      ticketprop: tickets,
+      ticketprop: data,
     },
   };
 }
