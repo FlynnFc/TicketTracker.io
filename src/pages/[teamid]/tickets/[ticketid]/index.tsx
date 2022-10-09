@@ -148,6 +148,3 @@ const TicketDetails = () => {
 };
 
 export default TicketDetails;
-function then(arg0: (ticketbyid: any) => any) {
-  throw new Error("Function not implemented.");
-}
