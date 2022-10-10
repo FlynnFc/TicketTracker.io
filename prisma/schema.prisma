@@ -1,15 +1,14 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["referentialIntegrity"]
-}
-
 datasource db {
     provider             = "mysql"
     url                  = env("DATABASE_URL")
     referentialIntegrity = "prisma"
+}
+
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
 }
 
 model Example {
@@ -51,6 +50,8 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    Project       Project?  @relation(fields: [projectId], references: [id])
+    projectId     String?
 }
 
 model VerificationToken {
@@ -62,18 +63,29 @@ model VerificationToken {
 }
 
 model Comments {
-    name    String
-    date    DateTime @default(now())
-    avatar  String
-    message String
-    id      String   @id @default(cuid())
+    name     String
+    date     DateTime @default(now())
+    avatar   String
+    message  String
+    id       String   @id @default(cuid())
+    Ticket   Ticket?  @relation(fields: [ticketId], references: [id])
+    ticketId String?
 }
 
 model Ticket {
-    id          String @id @default(cuid())
+    id          String     @id @default(cuid())
     title       String
     description String
     priority    String
     ticketType  String
     assignedTo  String
+    complexity  String     @default("")
+    comments    Comments[]
+}
+
+model Project {
+    id      String @id @default(cuid())
+    title   String
+    details String
+    team    User[]
 }

@@ -16,6 +16,6 @@
     "incremental": true,
     "noUncheckedIndexedAccess": true,
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", "src/pages/_Document.jsx", "src/components/login-btn",],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", "src/pages/_Document.jsx", "src/components/login-btn", "prisma/seed.js",],
   "exclude": ["node_modules"]
 }
