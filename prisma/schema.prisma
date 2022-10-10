@@ -89,3 +89,8 @@ model Project {
     details String
     team    User[]
 }
+
+model TestPost {
+    id    String @id @default(cuid())
+    title String
+}

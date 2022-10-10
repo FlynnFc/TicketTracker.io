@@ -26,8 +26,6 @@ interface Formdata {
 //   return await response.json;
 // }
 
-const prisma = new PrismaClient();
-
 const Create = () => {
   const [form, setForm] = useState<Formdata>({
     title: "",
@@ -39,8 +37,9 @@ const Create = () => {
   });
 
   const submitter = async () => {
+    const prisma = new PrismaClient();
     try {
-      prisma.ticket.createMany({ data: form });
+      prisma.testPost.create({ data: { title: "test" } });
     } catch (e) {
       console.error(e);
     } finally {
@@ -61,7 +60,10 @@ const Create = () => {
             </h1>
 
             <form
-              onSubmit={submitter}
+              onSubmit={(e) => {
+                e.preventDefault();
+                submitter();
+              }}
               method="post"
               className="mt-4 flex flex-col space-y-4 text-base-content"
             >
