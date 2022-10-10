@@ -34,7 +34,7 @@ const TicketDetails = () => {
     }
     const data = await ticketbyid.json();
     setPageData(() => data);
-    console.log(ticketbyid);
+    console.log(data);
   }
   useEffect(() => {
     ticketFetchIdHandler(ticketid);
@@ -53,26 +53,26 @@ const TicketDetails = () => {
                   <div className="flex max-h-[47rem] justify-evenly">
                     <div className="flex w-[50%] flex-col items-center justify-between rounded bg-base-300 shadow-lg">
                       <div>
-                        <h2 className="m-4 flex flex-col text-center text-4xl font-bold text-primary">
+                        <h2 className="m-4 flex flex-col text-center text-4xl font-bold text-primary-content">
                           Details for Ticket{" "}
                           <span className="text-base">id: {ticketid}</span>
                         </h2>
-                        <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-2xl">
-                          <li className="flex flex-col  justify-center">
+                        <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-xl">
+                          <li className="flex flex-col  justify-center text-center">
                             <h3 className="font-bold">Ticket Title</h3>
                             <p>{pageData.title}</p>
                           </li>
-                          <li className="flex max-w-sm flex-col justify-center">
+                          <li className="flex max-w-sm flex-col justify-center text-center">
                             <h4 className="font-bold ">Ticket Description</h4>
                             <p>{pageData.description}</p>
                           </li>
-                          <li className="flex flex-col justify-center">
+                          <li className="flex flex-col justify-center text-center">
                             <h4 className="font-bold ">Ticket type</h4>
                             <p>{pageData.ticketType}</p>
                           </li>
                         </ul>
-                        <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-2xl">
-                          <li className="flex flex-col">
+                        <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-xl">
+                          <li className="flex flex-col text-center">
                             <h4 className="font-bold ">Assigned Developer</h4>
                             <p>
                               {pageData.assignedTo
@@ -80,11 +80,11 @@ const TicketDetails = () => {
                                 : "No one assigned"}
                             </p>
                           </li>
-                          <li className="flex flex-col items-start">
+                          <li className="flex flex-col items-start text-center">
                             <h4 className="font-bold ">Project</h4>
                             <p>Example Project</p>
                           </li>
-                          <li className="flex flex-col">
+                          <li className="flex flex-col text-center">
                             <h4 className="font-bold ">Priority</h4>
                             <p>{pageData.priority}</p>
                           </li>
@@ -93,7 +93,7 @@ const TicketDetails = () => {
 
                       <div className="mb-12 w-[90%] overflow-y-auto">
                         {" "}
-                        <h3 className="m-4 text-center text-4xl font-bold text-primary">
+                        <h3 className="m-4 text-center text-4xl font-bold  text-primary-content">
                           Ticket History
                         </h3>
                         <table className="table w-full ">
