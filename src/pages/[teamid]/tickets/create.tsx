@@ -37,10 +37,13 @@ const Create = () => {
   });
 
   const submitter = async () => {
-    const response = await fetch("http://localhost:3000/api/newTickets", {
-      method: "POST",
-      body: JSON.stringify(form),
-    });
+    const response = await fetch(
+      "https://www.tickettracker.io/api/newTickets",
+      {
+        method: "POST",
+        body: JSON.stringify(form),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);
