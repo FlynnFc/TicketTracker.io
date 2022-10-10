@@ -37,14 +37,16 @@ const Create = () => {
   });
 
   const submitter = async () => {
-    const prisma = new PrismaClient();
-    try {
-      prisma.testPost.create({ data: { title: "test" } });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      await prisma.$disconnect();
+    const response = await fetch("http://localhost:3000/api/newTickets", {
+      method: "POST",
+      body: JSON.stringify(form),
+    });
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
     }
+
+    return await response.json;
   };
 
   return (
