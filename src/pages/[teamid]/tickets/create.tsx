@@ -56,14 +56,13 @@ const Create = () => {
     <>
       <Navbar />
       <Toaster />
-      <div className="drawer drawer-mobile">
+      <div className="drawer-mobile drawer">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex w-[90%] items-center">
-          <div className="flex w-[70%] flex-col rounded-2xl bg-base-300 p-12 md:mx-auto">
+          <div className="flex w-[70%] flex-col rounded-2xl bg-base-300 p-12 md:mx-auto lg:w-[50%]">
             <h1 className="text-center text-3xl font-bold text-base-content">
               Creating a new ticket
             </h1>
-
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -158,10 +157,8 @@ const Create = () => {
           </div>
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
-          >
-            Open drawer
-          </label>
+            className="btn btn-primary drawer-button fixed top-16 lg:hidden"
+          ></label>
         </div>
         <Drawer />
       </div>
