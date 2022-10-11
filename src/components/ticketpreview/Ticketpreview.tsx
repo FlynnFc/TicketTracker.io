@@ -20,7 +20,7 @@ const Ticketpreview = (props: TicketpreviewProps) => {
 
   return (
     <div
-      className={`card w-96 border-2 border-${bgColor}  flex flex-col items-start justify-center bg-neutral text-primary-content shadow-xl`}
+      className={`card w-96 border-2 border-${bgColor}  m-2 flex flex-col items-start justify-center bg-neutral text-primary-content shadow-xl`}
     >
       <div className="card-body ">
         <h2 className="card-title ">{props.title}</h2>

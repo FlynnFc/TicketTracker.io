@@ -40,7 +40,7 @@ const Index = (props: { ticketprop: NewTicketProp }) => {
       <div className="drawer-mobile drawer">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content mt-[8vh]">
-          <section className="ml-6 flex flex-wrap items-baseline justify-start space-x-6">
+          <section className="justify-start6 ml-6 flex  flex-wrap items-baseline">
             {props.ticketprop.map(
               (el: {
                 priority: string;
