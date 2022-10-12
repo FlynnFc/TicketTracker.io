@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import TicketManagePreview from "../../../components/ticketpreview/TicketMangePreview";
-import Ticketpreview from "../../../components/ticketpreview/Ticketpreview";
 
 export async function getServerSideProps() {
   const res = await fetch("https://www.tickettracker.io/api/tickets");

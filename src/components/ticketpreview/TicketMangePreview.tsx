@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 type funcProps = {
@@ -15,7 +14,7 @@ type TicketpreviewProps = {
   description: string;
   id: string;
   assignedTo: string;
-  clickHandler: (props: funcProps) => any;
+  clickHandler: (props: funcProps) => unknown;
 };
 
 const TicketManagePreview = (props: TicketpreviewProps) => {

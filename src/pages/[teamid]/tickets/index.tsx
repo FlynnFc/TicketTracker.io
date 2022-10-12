@@ -16,7 +16,7 @@ export async function getServerSideProps() {
   };
 }
 
-type NewTicketProp = {
+type NewTicketProps = {
   map(
     arg0: (el: {
       priority: string;
@@ -33,7 +33,7 @@ type NewTicketProp = {
   assignedTo: string;
 };
 
-const Index = (props: { ticketprop: NewTicketProp }) => {
+const Index = (props: { ticketprop: NewTicketProps }) => {
   return (
     <div className="max-h-screen">
       <Navbar />
@@ -55,6 +55,7 @@ const Index = (props: { ticketprop: NewTicketProp }) => {
                     description={el.description}
                     priority={el.priority}
                     id={el.id}
+                    assignedTo={""}
                   />
                 );
               }

@@ -1,27 +1,15 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-type funcProps = {
-  priority: string;
-  title: string;
-  description: string;
-  id: string;
-  assignedTo: string;
-};
-
 type TicketpreviewProps = {
   priority: string;
   title: string;
   description: string;
   id: string;
   assignedTo: string;
-  clickHandler: (props: funcProps) => any;
 };
 
 const Ticketpreview = (props: TicketpreviewProps) => {
-  const sendTicketInfo = () => {
-    props.clickHandler(props);
-  };
   const [bgColor, setBgColor] = useState("");
   useEffect(() => {
     if (props.priority === "high") {
@@ -33,7 +21,6 @@ const Ticketpreview = (props: TicketpreviewProps) => {
 
   return (
     <div
-      onClick={sendTicketInfo}
       className={`card w-96 border-2 border-${bgColor}  m-2 flex flex-col items-start justify-center bg-neutral text-primary-content shadow-xl`}
     >
       <div className="card-body ">
