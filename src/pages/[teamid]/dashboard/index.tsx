@@ -43,7 +43,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
           <Navbar />
           <section
             id="minitickets"
-            className="fixed bottom-2 left-2 flex w-full flex-row justify-start space-x-4"
+            className="fixed bottom-2 left-2 flex w-full flex-row justify-start"
           >
             {props.ticketprop.map(
               (el: {
