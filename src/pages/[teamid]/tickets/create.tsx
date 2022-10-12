@@ -2,8 +2,6 @@ import { useState } from "react";
 import Drawer from "../../../components/drawer/Drawer";
 import Navbar from "../../../components/navbar/Navbar";
 import { toast, Toaster } from "react-hot-toast";
-import { PrismaClient, Prisma } from "@prisma/client";
-import { useSession } from "next-auth/react";
 interface Formdata {
   title: string;
   description: string;
