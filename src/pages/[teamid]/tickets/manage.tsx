@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
 import Navbar from "../../../components/navbar/Navbar";
 import TicketManagePreview from "../../../components/ticketpreview/TicketMangePreview";
 import { toast, Toaster } from "react-hot-toast";
+import Modal from "../../../components/modal/Modal";
 
 export async function getServerSideProps() {
   const res = await fetch("https://www.tickettracker.io/api/tickets");
@@ -49,6 +49,7 @@ type TickProps = {
 };
 
 const Managetickets = (props: { ticketprop: NewTicketProp }) => {
+  const [submitActive, setSubmitActive] = useState(true);
   const [form, setForm] = useState({
     title: "title",
     description: "description",
@@ -66,6 +67,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     complexity: "",
     ticketType: "",
   });
+
   const onSelectHandler = (ticketProps: TickProps) => {
     console.log(ticketProps);
     setTicketInfo({
@@ -83,7 +85,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     toast.promise(submitter(), {
       loading: "Deleting ticket...",
       success: <b>Ticket deleted</b>,
-      error: <b>{`We could not delete this ticket`}</b>,
+      error: <b>{`Could not delete this ticket`}</b>,
     });
   };
 
@@ -107,7 +109,20 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     return await response.json;
   };
 
+  const revertHandler = () => {
+    setForm({
+      title: ticketInfo.title,
+      description: ticketInfo.description,
+      ticketType: ticketInfo.ticketType,
+      priority: ticketInfo.priority,
+      complexity: ticketInfo.complexity,
+      assignedTo: ticketInfo.assignedTo,
+    });
+    setSubmitActive(true);
+  };
+
   useEffect(() => {
+    setSubmitActive(true);
     setForm({
       title: ticketInfo.title,
       description: ticketInfo.description,
@@ -118,23 +133,49 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     });
   }, [ticketInfo]);
 
+  const submitterPost = async () => {
+    const response = await fetch("http://localhost:3000/api/editTicket", {
+      method: "PUT",
+      body: JSON.stringify(form),
+    });
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    setForm({
+      title: "",
+      description: "",
+      ticketType: "",
+      priority: "",
+      complexity: "",
+      assignedTo: "",
+    });
+    return await response.json;
+  };
+
+  const submitHandler = async () => {
+    toast.promise(submitterPost(), {
+      loading: "Editing ticket...",
+      success: <b>Ticket Edited</b>,
+      error: <b>{`We could not edit this ticket`}</b>,
+    });
+  };
+
   return (
-    <>
+    <div className="max-h-[80vh]">
       <Navbar />
       <Toaster />
-      <div className="mx-10 mt-20 flex flex-col text-neutral-content lg:flex-row">
-        <section className="w-full items-center rounded bg-base-300 p-6 text-white shadow">
-          <div
-            onClick={deleteHandler}
-            className="absolute w-min rounded-2xl bg-error p-3"
-          >
-            <AiOutlineDelete />
-          </div>
+      <div className="mt-20 flex flex-col items-start justify-center text-neutral-content md:mx-10 lg:flex-row">
+        <section className="top-10 z-10 w-full min-w-max items-center rounded bg-base-300 p-6 text-white shadow lg:sticky">
           <h1 className="my-2 text-center text-2xl font-bold">Edit users</h1>
           <div>
             <form
               className="flex flex-col items-center justify-center space-y-2"
-              action="#"
+              onSubmit={(e) => {
+                e.preventDefault();
+                submitHandler();
+              }}
+              method="post"
             >
               <div className="w-full max-w-sm">
                 <input
@@ -142,14 +183,24 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   placeholder="title"
                   className="input w-full max-w-sm"
                   value={form.title}
-                  onChange={(e) => setForm({ ...form, title: e.target.value })}
+                  onChange={(e) => {
+                    if (ticketInfo) {
+                      setSubmitActive(false);
+                      setForm({ ...form, title: e.target.value });
+                    }
+                    setSubmitActive(true);
+                  }}
                 />
               </div>
               <div className="w-full max-w-sm">
                 <input
-                  onChange={(e) =>
-                    setForm({ ...form, description: e.target.value })
-                  }
+                  onChange={(e) => {
+                    if (ticketInfo) {
+                      setSubmitActive(false);
+                      setForm({ ...form, description: e.target.value });
+                    }
+                    setSubmitActive(true);
+                  }}
                   type="description"
                   placeholder="description"
                   className="input w-full max-w-sm focus:border-none"
@@ -158,9 +209,13 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
               </div>
               <div className="w-full max-w-sm">
                 <select
-                  onChange={(e) =>
-                    setForm({ ...form, priority: e.target.value })
-                  }
+                  onChange={(e) => {
+                    if (ticketInfo) {
+                      setSubmitActive(false);
+                      setForm({ ...form, priority: e.target.value });
+                    }
+                    setSubmitActive(true);
+                  }}
                   value={form.priority ? form.priority : "Priority"}
                   className="select w-full max-w-sm"
                 >
@@ -196,9 +251,13 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                       ? form.ticketType
                       : "Choose the type of ticket"
                   }
-                  onChange={(e) =>
-                    setForm({ ...form, ticketType: e.target.value })
-                  }
+                  onChange={(e) => {
+                    if (ticketInfo) {
+                      setSubmitActive(false);
+                      setForm({ ...form, ticketType: e.target.value });
+                    }
+                    setSubmitActive(true);
+                  }}
                 >
                   <option disabled selected>
                     Choose the type of ticket
@@ -218,9 +277,13 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                       ? form.complexity
                       : "Choose the Complexity of this ticket"
                   }
-                  onChange={(e) =>
-                    setForm({ ...form, complexity: e.target.value })
-                  }
+                  onChange={(e) => {
+                    if (ticketInfo) {
+                      setSubmitActive(false);
+                      setForm({ ...form, complexity: e.target.value });
+                    }
+                    setSubmitActive(true);
+                  }}
                 >
                   <option disabled>Choose the Complexity of this ticket</option>
                   <option>Low</option>
@@ -228,10 +291,30 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   <option>High</option>
                 </select>
               </div>
+              <div className="flex w-full max-w-sm flex-row justify-between lg:space-x-2">
+                <button
+                  disabled={submitActive}
+                  type="submit"
+                  className="btn btn-primary lg:max-w-[10rem]"
+                >
+                  Save Changes
+                </button>
+                <button
+                  disabled={submitActive}
+                  type="button"
+                  className="btn btn-warning lg:max-w-[10rem]"
+                  onClick={revertHandler}
+                >
+                  Revert to original
+                </button>
+              </div>
             </form>
+            <div className="flex justify-center">
+              <Modal deleteHandler={deleteHandler} />
+            </div>
           </div>
         </section>
-        <section className="flex flex-wrap items-baseline justify-center  overflow-y-auto">
+        <section className="z-0 flex flex-wrap items-stretch justify-center">
           {props.ticketprop.map((el) => {
             return (
               <>
@@ -251,7 +334,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
           })}
         </section>
       </div>
-    </>
+    </div>
   );
 };
 

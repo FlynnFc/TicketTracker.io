@@ -44,7 +44,7 @@ const TicketDetails = () => {
     <div className="">
       <Navbar />
       {pageData && (
-        <div className="drawer drawer-mobile">
+        <div className="drawer-mobile drawer">
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content mt-[5vh] flex flex-col items-start justify-start">
             <div className="mt-5 flex items-center justify-center">

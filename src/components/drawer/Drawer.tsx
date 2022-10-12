@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 const Drawer = () => {
   return (
-    <div className="drawer-side overflow-hidden">
+    <div className="drawer-side overflow-hidden ">
       <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-      <ul className="menu mt-16 w-60 space-y-2 overflow-y-auto bg-base-300 p-4 text-base-content">
+      <ul className="menu mt-16 w-screen space-y-2  overflow-y-auto bg-base-300 p-4 text-base-content sm:w-60">
         <li>
           <Link
             href={{

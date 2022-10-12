@@ -61,15 +61,15 @@ const Index = (props: { ticketprop: NewTicketProps }) => {
               }
             )}
           </section>
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button absolute top-16 left-0 lg:hidden"
-          >
-            <AiOutlineArrowRight />
-          </label>
         </div>
         <Drawer />
       </div>
+      <label
+        htmlFor="my-drawer-2"
+        className="btn btn-primary drawer-button absolute top-16 left-0 z-20 lg:hidden"
+      >
+        <AiOutlineArrowRight />
+      </label>
     </div>
   );
 };
