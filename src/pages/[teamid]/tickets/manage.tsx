@@ -50,14 +50,6 @@ type TickProps = {
 
 const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   const [submitActive, setSubmitActive] = useState(true);
-  const [form, setForm] = useState({
-    title: "title",
-    description: "description",
-    ticketType: "",
-    priority: "Priority",
-    complexity: "",
-    assignedTo: "",
-  });
   const [ticketInfo, setTicketInfo] = useState({
     priority: "",
     title: "",
@@ -66,6 +58,15 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     assignedTo: "",
     complexity: "",
     ticketType: "",
+  });
+  const [form, setForm] = useState({
+    title: "title",
+    description: "description",
+    ticketType: "",
+    priority: "Priority",
+    complexity: "",
+    assignedTo: "",
+    id: ticketInfo.id,
   });
 
   const onSelectHandler = (ticketProps: TickProps) => {
@@ -108,6 +109,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       priority: "Priority",
       complexity: "",
       assignedTo: "",
+      id: "",
     });
     return await response.json;
   };
@@ -120,6 +122,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       priority: ticketInfo.priority,
       complexity: ticketInfo.complexity,
       assignedTo: ticketInfo.assignedTo,
+      id: ticketInfo.id,
     });
     setSubmitActive(true);
   };
@@ -133,6 +136,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       priority: ticketInfo.priority,
       complexity: ticketInfo.complexity,
       assignedTo: ticketInfo.assignedTo,
+      id: ticketInfo.id,
     });
   }, [ticketInfo]);
 
@@ -155,6 +159,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       priority: "",
       complexity: "",
       assignedTo: "",
+      id: "",
     });
     return await response.json;
   };
