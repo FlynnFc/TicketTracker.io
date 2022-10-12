@@ -35,11 +35,19 @@ const Create = () => {
   });
 
   const submitHandler = async () => {
-    toast.promise(submitter(), {
-      loading: "Creating new ticket...",
-      success: <b>Ticket Created!</b>,
-      error: <b>{`We could not proccess this ticket`}</b>,
-    });
+    if (
+      form.ticketType &&
+      form.complexity &&
+      form.description &&
+      form.priority &&
+      form.title
+    ) {
+      toast.promise(submitter(), {
+        loading: "Creating new ticket...",
+        success: <b>Ticket Created!</b>,
+        error: <b>{`We could not proccess this ticket`}</b>,
+      });
+    } else toast.error("You need to complete the form");
   };
 
   const submitter = async () => {
@@ -113,6 +121,7 @@ const Create = () => {
                 </label>
 
                 <select
+                  required
                   className="select w-full"
                   value={
                     form.ticketType
@@ -139,6 +148,7 @@ const Create = () => {
                 </label>
 
                 <select
+                  required
                   className="select w-full"
                   value={
                     form.priority
@@ -162,6 +172,7 @@ const Create = () => {
                 </label>
 
                 <select
+                  required
                   className="select w-full"
                   value={
                     form.complexity

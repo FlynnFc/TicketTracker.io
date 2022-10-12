@@ -42,11 +42,20 @@ type TickProps = {
 };
 
 const Managetickets = (props: { ticketprop: NewTicketProp }) => {
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    ticketType: "",
+    priority: "",
+    complexity: "",
+    assignedTo: "",
+  });
   const [ticketInfo, setTicketInfo] = useState({
     priority: "",
     title: "",
     description: "",
     id: "",
+    assignedTo: "",
   });
   const onSelectHandler = (ticketProps: TickProps) => {
     console.log(ticketProps);
@@ -55,28 +64,34 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       title: ticketProps.title,
       description: ticketProps.description,
       id: ticketProps.id,
+      assignedTo: ticketProps.assignedTo,
     });
   };
   return (
     <>
       <Navbar />
       <div className="mt-20 ml-10 flex flex-col space-x-10 text-neutral-content lg:flex-row">
-        <section className="w-full items-center rounded bg-base-200 p-6 text-white shadow">
+        <section className="w-full items-center rounded bg-base-300 p-6 text-white shadow">
           <div>
             <h1 className="my-2 text-center text-2xl font-bold">Edit users</h1>
           </div>
           <div>
             <form
-              className="flex flex-col items-center justify-center space-y-1"
+              className="flex flex-col items-center justify-center space-y-2"
               action="#"
             >
+              <label htmlFor="title">Title</label>
               <input
                 type="text"
                 placeholder="title"
                 className="input w-full max-w-sm"
                 value={ticketInfo.title ? ticketInfo.title : "Ticket title"}
+                onChange={(e) => setForm({ ...form, title: e.target.value })}
               />
               <input
+                onChange={(e) =>
+                  setForm({ ...form, description: e.target.value })
+                }
                 type="description"
                 placeholder="description"
                 className="input w-full max-w-sm focus:border-none"
@@ -87,6 +102,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                 }
               />
               <select
+                onChange={(e) => setForm({ ...form, priority: e.target.value })}
                 value={ticketInfo.priority ? ticketInfo.priority : "Priority"}
                 className="select w-full max-w-sm"
               >
@@ -97,6 +113,20 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                 <option>Medium</option>
                 <option>High</option>
                 <option>Critical</option>
+              </select>
+              <select
+                onChange={(e) =>
+                  setForm({ ...form, assignedTo: e.target.value })
+                }
+                value={
+                  ticketInfo.assignedTo ? ticketInfo.assignedTo : "Assigned to"
+                }
+                className="select w-full max-w-sm"
+              >
+                <option disabled selected>
+                  Assigned to
+                </option>
+                <option>Need to add users here</option>
               </select>
             </form>
           </div>
