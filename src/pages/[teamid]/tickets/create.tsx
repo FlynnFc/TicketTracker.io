@@ -38,15 +38,18 @@ const Create = () => {
     toast.promise(submitter(), {
       loading: "Creating new ticket...",
       success: <b>Ticket Created!</b>,
-      error: <b>{`We could'nt proccess this ticket`}</b>,
+      error: <b>{`We could not proccess this ticket`}</b>,
     });
   };
 
   const submitter = async () => {
-    const response = await fetch("https://tickettracker.io/api/newTickets", {
-      method: "POST",
-      body: JSON.stringify(form),
-    });
+    const response = await fetch(
+      "https://www.tickettracker.io/api/newTickets",
+      {
+        method: "POST",
+        body: JSON.stringify(form),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -103,7 +106,6 @@ const Create = () => {
                 onChange={(e) =>
                   setForm({ ...form, description: e.target.value })
                 }
-                value={form.description ? form.description : "Ticket Type"}
               />
               <div className="flex w-full flex-col">
                 <label htmlFor="first" className="my-2 text-xl font-medium">
