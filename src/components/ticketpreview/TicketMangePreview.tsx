@@ -18,7 +18,7 @@ type TicketpreviewProps = {
   clickHandler: (props: funcProps) => any;
 };
 
-const Ticketpreview = (props: TicketpreviewProps) => {
+const TicketManagePreview = (props: TicketpreviewProps) => {
   const sendTicketInfo = () => {
     props.clickHandler(props);
   };
@@ -34,26 +34,15 @@ const Ticketpreview = (props: TicketpreviewProps) => {
   return (
     <div
       onClick={sendTicketInfo}
-      className={`card w-96 border-2 border-${bgColor}  m-2 flex flex-col items-start justify-center bg-neutral text-primary-content shadow-xl`}
+      className={`card w-96 cursor-pointer border-2 border-${bgColor}  m-2 flex flex-col items-start justify-center bg-neutral text-primary-content shadow-xl`}
     >
       <div className="card-body ">
         <h2 className="card-title ">{props.title}</h2>
         <p>{props.description}</p>
-        <div className="card-actions justify-start">
-          <Link
-            href={{
-              pathname: "/[teamid]/tickets/[ticketid]",
-              query: { teamid: "demo", ticketid: props.id },
-            }}
-          >
-            <button className="btn btn-primary text-neutral-content">
-              View Ticket
-            </button>
-          </Link>
-        </div>
+        <div className="card-actions justify-start"></div>
       </div>
     </div>
   );
 };
 
-export default Ticketpreview;
+export default TicketManagePreview;

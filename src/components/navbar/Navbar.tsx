@@ -7,7 +7,7 @@ import LoginBtn from "../login-btn/LoginBtn";
 
 const Navbar = () => {
   return (
-    <div className="navbar fixed z-50 bg-neutral">
+    <div className="navbar absolute top-0 z-50 bg-neutral">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">

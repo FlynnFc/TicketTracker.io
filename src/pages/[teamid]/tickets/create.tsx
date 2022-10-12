@@ -36,19 +36,31 @@ const Create = () => {
     assignedTo: "",
   });
 
+  const submitHandler = async () => {
+    toast.promise(submitter(), {
+      loading: "Creating new ticket...",
+      success: <b>Ticket Created!</b>,
+      error: <b>{`We could'nt proccess this ticket`}</b>,
+    });
+  };
+
   const submitter = async () => {
-    const response = await fetch(
-      "https://www.tickettracker.io/api/newTickets",
-      {
-        method: "POST",
-        body: JSON.stringify(form),
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/newTickets", {
+      method: "POST",
+      body: JSON.stringify(form),
+    });
 
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-
+    setForm({
+      title: "",
+      description: "",
+      ticketType: "",
+      priority: "",
+      complexity: "",
+      assignedTo: "",
+    });
     return await response.json;
   };
 
@@ -66,7 +78,7 @@ const Create = () => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                submitter();
+                submitHandler();
               }}
               method="post"
               className="mt-4 flex flex-col space-y-4 text-base-content"
@@ -107,7 +119,9 @@ const Create = () => {
                     setForm({ ...form, ticketType: e.target.value })
                   }
                 >
-                  <option disabled>Choose the type of ticket</option>
+                  <option disabled selected>
+                    Choose the type of ticket
+                  </option>
                   <option>Bug</option>
                   <option>Feature</option>
                   <option>Support/Advice</option>

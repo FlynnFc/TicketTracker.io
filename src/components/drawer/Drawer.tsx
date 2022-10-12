@@ -18,7 +18,14 @@ const Drawer = () => {
           </Link>
         </li>
         <li>
-          <button className="btn btn-info text-white">Manage Tickets</button>
+          <Link
+            href={{
+              pathname: "/[teamid]/tickets/manage",
+              query: { teamid: "demo" },
+            }}
+          >
+            <button className="btn btn-info text-white">Manage Tickets</button>
+          </Link>
         </li>
         <li>
           <Link
