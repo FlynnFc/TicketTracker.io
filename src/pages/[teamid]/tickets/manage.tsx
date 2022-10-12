@@ -91,7 +91,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
 
   const submitter = async () => {
     const response = await fetch(
-      "https://www.tickettracker.com/api/deleteticketbyid",
+      "https://www.tickettracker.io/api/deleteticketbyid",
       {
         method: "DELETE",
         body: JSON.stringify({ id: ticketInfo.id }),
@@ -137,7 +137,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   }, [ticketInfo]);
 
   const submitterPost = async () => {
-    const response = await fetch("http://localhost:3000/api/editTicket", {
+    const response = await fetch("https://tickettracker.io/api/editTicket", {
       method: "PUT",
       body: JSON.stringify(form),
     });
