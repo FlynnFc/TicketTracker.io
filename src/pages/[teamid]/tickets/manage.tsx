@@ -187,7 +187,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   className="input w-full max-w-sm"
                   value={form.title}
                   onChange={(e) => {
-                    if (ticketInfo) {
+                    if (ticketInfo.title) {
                       setSubmitActive(false);
                       setForm({ ...form, title: e.target.value });
                     }
