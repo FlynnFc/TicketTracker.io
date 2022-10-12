@@ -187,22 +187,20 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   className="input w-full max-w-sm"
                   value={form.title}
                   onChange={(e) => {
-                    if (ticketInfo.title) {
+                    if (ticketInfo.id) {
                       setSubmitActive(false);
                       setForm({ ...form, title: e.target.value });
-                    }
-                    setSubmitActive(true);
+                    } else setSubmitActive(true);
                   }}
                 />
               </div>
               <div className="w-full max-w-sm">
                 <input
                   onChange={(e) => {
-                    if (ticketInfo) {
+                    if (ticketInfo.id) {
                       setSubmitActive(false);
                       setForm({ ...form, description: e.target.value });
-                    }
-                    setSubmitActive(true);
+                    } else setSubmitActive(true);
                   }}
                   type="description"
                   placeholder="description"
@@ -213,11 +211,10 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
               <div className="w-full max-w-sm">
                 <select
                   onChange={(e) => {
-                    if (ticketInfo) {
+                    if (ticketInfo.id) {
                       setSubmitActive(false);
                       setForm({ ...form, priority: e.target.value });
-                    }
-                    setSubmitActive(true);
+                    } else setSubmitActive(true);
                   }}
                   value={form.priority ? form.priority : "Priority"}
                   className="select w-full max-w-sm"
@@ -255,11 +252,10 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                       : "Choose the type of ticket"
                   }
                   onChange={(e) => {
-                    if (ticketInfo) {
+                    if (ticketInfo.id) {
                       setSubmitActive(false);
                       setForm({ ...form, ticketType: e.target.value });
-                    }
-                    setSubmitActive(true);
+                    } else setSubmitActive(true);
                   }}
                 >
                   <option disabled selected>
@@ -281,11 +277,10 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                       : "Choose the Complexity of this ticket"
                   }
                   onChange={(e) => {
-                    if (ticketInfo) {
+                    if (ticketInfo.id) {
                       setSubmitActive(false);
                       setForm({ ...form, complexity: e.target.value });
-                    }
-                    setSubmitActive(true);
+                    } else setSubmitActive(true);
                   }}
                 >
                   <option disabled>Choose the Complexity of this ticket</option>
