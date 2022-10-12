@@ -6,6 +6,8 @@ type funcProps = {
   description: string;
   id: string;
   assignedTo: string;
+  complexity: string;
+  ticketType: string;
 };
 
 type TicketpreviewProps = {
@@ -14,6 +16,8 @@ type TicketpreviewProps = {
   description: string;
   id: string;
   assignedTo: string;
+  complexity: string;
+  ticketType: string;
   clickHandler: (props: funcProps) => unknown;
 };
 

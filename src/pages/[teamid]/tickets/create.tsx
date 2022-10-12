@@ -51,13 +51,10 @@ const Create = () => {
   };
 
   const submitter = async () => {
-    const response = await fetch(
-      "https://www.tickettracker.io/api/newTickets",
-      {
-        method: "POST",
-        body: JSON.stringify(form),
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/newTickets", {
+      method: "POST",
+      body: JSON.stringify(form),
+    });
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -77,7 +74,7 @@ const Create = () => {
     <>
       <Navbar />
       <Toaster />
-      <div className="drawer-mobile drawer">
+      <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex w-[90%] items-center">
           <div className="flex w-[70%] flex-col rounded-2xl bg-base-300 p-12 md:mx-auto lg:w-[50%]">
@@ -107,6 +104,7 @@ const Create = () => {
                 Further details
               </label>
               <input
+                value={form.description}
                 required
                 type="text"
                 className="rounded-lg bg-base-100 p-2 "
@@ -161,8 +159,8 @@ const Create = () => {
                 >
                   <option disabled>Choose the priority of this ticket</option>
                   <option>Low</option>
-                  <option>Medium</option>
-                  <option>High</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
                   <option>Critical</option>
                 </select>
               </div>

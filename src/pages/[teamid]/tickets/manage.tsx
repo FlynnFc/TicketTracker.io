@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import Navbar from "../../../components/navbar/Navbar";
 import TicketManagePreview from "../../../components/ticketpreview/TicketMangePreview";
@@ -20,6 +20,8 @@ export async function getServerSideProps() {
 type NewTicketProp = {
   map(
     arg0: (el: {
+      ticketType: string;
+      complexity: string;
       priority: string;
       description: string;
       title: string;
@@ -33,6 +35,7 @@ type NewTicketProp = {
   priority: string;
   ticketType: string;
   assignedTo: string;
+  complexity: string;
 };
 
 type TickProps = {
@@ -41,14 +44,16 @@ type TickProps = {
   description: string;
   id: string;
   assignedTo: string;
+  ticketType: string;
+  complexity: string;
 };
 
 const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   const [form, setForm] = useState({
-    title: "",
-    description: "",
+    title: "title",
+    description: "description",
     ticketType: "",
-    priority: "",
+    priority: "Priority",
     complexity: "",
     assignedTo: "",
   });
@@ -58,6 +63,8 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     description: "",
     id: "",
     assignedTo: "",
+    complexity: "",
+    ticketType: "",
   });
   const onSelectHandler = (ticketProps: TickProps) => {
     console.log(ticketProps);
@@ -67,6 +74,8 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       description: ticketProps.description,
       id: ticketProps.id,
       assignedTo: ticketProps.assignedTo,
+      complexity: ticketProps.complexity,
+      ticketType: ticketProps.ticketType,
     });
   };
 
@@ -91,12 +100,23 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       title: "",
       description: "",
       ticketType: "",
-      priority: "",
+      priority: "Priority",
       complexity: "",
       assignedTo: "",
     });
     return await response.json;
   };
+
+  useEffect(() => {
+    setForm({
+      title: ticketInfo.title,
+      description: ticketInfo.description,
+      ticketType: ticketInfo.ticketType,
+      priority: ticketInfo.priority,
+      complexity: ticketInfo.complexity,
+      assignedTo: ticketInfo.assignedTo,
+    });
+  }, [ticketInfo]);
 
   return (
     <>
@@ -121,7 +141,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   type="text"
                   placeholder="title"
                   className="input w-full max-w-sm"
-                  value={ticketInfo.title ? ticketInfo.title : "Ticket title"}
+                  value={form.title}
                   onChange={(e) => setForm({ ...form, title: e.target.value })}
                 />
               </div>
@@ -133,11 +153,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   type="description"
                   placeholder="description"
                   className="input w-full max-w-sm focus:border-none"
-                  value={
-                    ticketInfo.description
-                      ? ticketInfo.description
-                      : "description"
-                  }
+                  value={form.description}
                 />
               </div>
               <div className="w-full max-w-sm">
@@ -145,15 +161,15 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   onChange={(e) =>
                     setForm({ ...form, priority: e.target.value })
                   }
-                  value={ticketInfo.priority ? ticketInfo.priority : "Priority"}
+                  value={form.priority ? form.priority : "Priority"}
                   className="select w-full max-w-sm"
                 >
                   <option disabled selected>
                     Priority
                   </option>
                   <option>Low</option>
-                  <option>Medium</option>
-                  <option>High</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
                   <option>Critical</option>
                 </select>
               </div>
@@ -162,18 +178,55 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   onChange={(e) =>
                     setForm({ ...form, assignedTo: e.target.value })
                   }
-                  value={
-                    ticketInfo.assignedTo
-                      ? ticketInfo.assignedTo
-                      : "Assigned to"
-                  }
+                  value={form.assignedTo}
                   className="select w-full max-w-sm"
                 >
                   <option disabled selected>
                     Assigned to
                   </option>
                   <option>Need to add users here</option>
-                </select>{" "}
+                </select>
+              </div>
+              <div className="w-full max-w-sm">
+                <select
+                  required
+                  className="select w-full"
+                  value={
+                    form.ticketType
+                      ? form.ticketType
+                      : "Choose the type of ticket"
+                  }
+                  onChange={(e) =>
+                    setForm({ ...form, ticketType: e.target.value })
+                  }
+                >
+                  <option disabled selected>
+                    Choose the type of ticket
+                  </option>
+                  <option>Bug</option>
+                  <option>Feature</option>
+                  <option>Support/Advice</option>
+                  <option>Task</option>
+                </select>
+              </div>
+              <div className="w-full max-w-sm">
+                <select
+                  required
+                  className="select w-full"
+                  value={
+                    form.complexity
+                      ? form.complexity
+                      : "Choose the Complexity of this ticket"
+                  }
+                  onChange={(e) =>
+                    setForm({ ...form, complexity: e.target.value })
+                  }
+                >
+                  <option disabled>Choose the Complexity of this ticket</option>
+                  <option>Low</option>
+                  <option>Medium</option>
+                  <option>High</option>
+                </select>
               </div>
             </form>
           </div>
@@ -190,6 +243,8 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   priority={el.priority}
                   id={el.id}
                   assignedTo={el.assignedTo}
+                  complexity={el.complexity}
+                  ticketType={el.ticketType}
                 />
               </>
             );
