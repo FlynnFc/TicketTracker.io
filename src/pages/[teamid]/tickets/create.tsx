@@ -68,7 +68,7 @@ const Create = () => {
     <>
       <Navbar />
       <Toaster />
-      <div className="drawer drawer-mobile">
+      <div className="drawer-mobile drawer">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex w-[90%] items-center">
           <div className="flex w-[70%] flex-col rounded-2xl bg-base-300 p-12 md:mx-auto lg:w-[50%]">
@@ -114,7 +114,11 @@ const Create = () => {
 
                 <select
                   className="select w-full"
-                  value={form.ticketType}
+                  value={
+                    form.ticketType
+                      ? form.ticketType
+                      : "Choose the type of ticket"
+                  }
                   onChange={(e) =>
                     setForm({ ...form, ticketType: e.target.value })
                   }
@@ -149,7 +153,11 @@ const Create = () => {
 
                 <select
                   className="select w-full"
-                  value={form.complexity}
+                  value={
+                    form.complexity
+                      ? form.complexity
+                      : "Choose the Complexity of this ticket"
+                  }
                   onChange={(e) =>
                     setForm({ ...form, complexity: e.target.value })
                   }
