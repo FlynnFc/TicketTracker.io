@@ -90,10 +90,13 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   };
 
   const submitter = async () => {
-    const response = await fetch("http://localhost:3000/api/deleteticketbyid", {
-      method: "DELETE",
-      body: JSON.stringify({ id: ticketInfo.id }),
-    });
+    const response = await fetch(
+      "https://www.tickertracker.com/api/deleteticketbyid",
+      {
+        method: "DELETE",
+        body: JSON.stringify({ id: ticketInfo.id }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);

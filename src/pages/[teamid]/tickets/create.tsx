@@ -51,10 +51,13 @@ const Create = () => {
   };
 
   const submitter = async () => {
-    const response = await fetch("http://localhost:3000/api/newTickets", {
-      method: "POST",
-      body: JSON.stringify(form),
-    });
+    const response = await fetch(
+      "https://www.tickertracker.com/api/newTickets",
+      {
+        method: "POST",
+        body: JSON.stringify(form),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -74,7 +77,7 @@ const Create = () => {
     <>
       <Navbar />
       <Toaster />
-      <div className="drawer drawer-mobile">
+      <div className="drawer-mobile drawer">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex w-[90%] items-center">
           <div className="flex w-[70%] flex-col rounded-2xl bg-base-300 p-12 md:mx-auto lg:w-[50%]">
