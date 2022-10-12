@@ -45,7 +45,7 @@ const Create = () => {
   };
 
   const submitter = async () => {
-    const response = await fetch("http://localhost:3000/api/newTickets", {
+    const response = await fetch("https://tickettracker.io/api/newTickets", {
       method: "POST",
       body: JSON.stringify(form),
     });
@@ -68,7 +68,7 @@ const Create = () => {
     <>
       <Navbar />
       <Toaster />
-      <div className="drawer-mobile drawer">
+      <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex w-[90%] items-center">
           <div className="flex w-[70%] flex-col rounded-2xl bg-base-300 p-12 md:mx-auto lg:w-[50%]">
