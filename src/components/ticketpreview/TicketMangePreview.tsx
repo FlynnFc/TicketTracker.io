@@ -35,10 +35,9 @@ const TicketManagePreview = (props: TicketpreviewProps) => {
       onClick={sendTicketInfo}
       className={`card w-96 cursor-pointer border-2 border-${bgColor}  m-2 flex flex-col items-start justify-center bg-neutral text-primary-content shadow-xl`}
     >
-      <div className="card-body ">
+      <div className="card-body">
         <h2 className="card-title ">{props.title}</h2>
         <p>{props.description}</p>
-        <div className="card-actions justify-start"></div>
       </div>
     </div>
   );
