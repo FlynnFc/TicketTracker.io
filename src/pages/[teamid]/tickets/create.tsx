@@ -103,7 +103,7 @@ const Create = () => {
                 onChange={(e) =>
                   setForm({ ...form, description: e.target.value })
                 }
-                value={form.description}
+                value={form.description ? form.description : "Ticket Type"}
               />
               <div className="flex w-full flex-col">
                 <label htmlFor="first" className="my-2 text-xl font-medium">
@@ -136,7 +136,17 @@ const Create = () => {
                   Priority
                 </label>
 
-                <select className="select w-full">
+                <select
+                  className="select w-full"
+                  value={
+                    form.priority
+                      ? form.priority
+                      : "Choose the priority of this ticket"
+                  }
+                  onChange={(e) =>
+                    setForm({ ...form, priority: e.target.value })
+                  }
+                >
                   <option disabled>Choose the priority of this ticket</option>
                   <option>Low</option>
                   <option>Medium</option>
