@@ -12,9 +12,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const ticket: Prisma.TicketCreateInput = JSON.parse(req.body);
-    const savedContact = await prisma.ticket.create({ data: ticket });
-    res.status(200).json(savedContact);
+    const savedTicket = await prisma.ticket.create({ data: ticket });
+    res.status(200).json(savedTicket);
   } catch (err) {
-    res.status(400).json({ message: 'Something went wrong' });
+    res.status(400).json({ message: err });
   }
 };
