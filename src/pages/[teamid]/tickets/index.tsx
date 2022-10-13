@@ -1,7 +1,8 @@
 import Navbar from "../../../components/navbar/Navbar";
 import Ticketpreview from "../../../components/ticketpreview/Ticketpreview";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineClose } from "react-icons/ai";
 import Drawer from "../../../components/drawer/Drawer";
+import { useState } from "react";
 
 export async function getServerSideProps() {
   const res = await fetch("http://localhost:3000/api/tickets");
@@ -34,6 +35,7 @@ type NewTicketProps = {
 };
 
 const Index = (props: { ticketprop: NewTicketProps }) => {
+  const [showClose, setShowClose] = useState(false);
   return (
     <div className="max-h-screen">
       <Navbar />
@@ -65,10 +67,15 @@ const Index = (props: { ticketprop: NewTicketProps }) => {
         <Drawer />
       </div>
       <label
+        onClick={() => {
+          setShowClose((prev) => !prev);
+        }}
         htmlFor="my-drawer-2"
-        className="btn btn-primary drawer-button absolute top-16 left-0 z-20 lg:hidden"
+        className={`btn ${
+          showClose ? "btn-error" : "btn-primary"
+        } drawer-button fixed bottom-6 right-6 z-40 lg:hidden`}
       >
-        <AiOutlineArrowRight />
+        {showClose ? <AiOutlineClose /> : <AiOutlineArrowRight />}
       </label>
     </div>
   );
