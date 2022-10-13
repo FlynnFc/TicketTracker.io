@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import Navbar from "../../../../components/navbar/Navbar";
 import CommentSection from "../../../../components/commentsection/CommentSection";
 
-import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineClose } from "react-icons/ai";
+import { FaLongArrowAltRight } from "react-icons/fa";
 import { useState } from "react";
 import Link from "next/link";
 import { toast, Toaster } from "react-hot-toast";
@@ -20,6 +21,7 @@ type TicketProps = {
 
 const TicketDetails = () => {
   const [pageData, setPageData] = useState<TicketProps>();
+  const [showClose, setShowClose] = useState(false);
   const router = useRouter();
   const { ticketid } = router.query;
 
@@ -85,8 +87,8 @@ const TicketDetails = () => {
             >
               <section className="w-[98%] rounded-lg p-4">
                 <div>
-                  <div className="flex max-h-[47rem] flex-col items-center lg:flex-row lg:items-start lg:justify-evenly">
-                    <div className="flex flex-col items-center justify-between rounded bg-base-300 shadow-lg lg:w-[50%]">
+                  <div className=" flex flex-col items-stretch space-y-4 overflow-auto xl:mt-0 xl:max-h-[47rem] xl:flex-row xl:items-start xl:justify-evenly xl:space-y-0">
+                    <div className="flex flex-col items-center justify-between rounded bg-base-300 shadow-lg xl:w-[50%]">
                       <div>
                         <h2 className="m-4 flex flex-col text-center text-4xl font-bold text-primary-content">
                           Details for Ticket
@@ -169,16 +171,10 @@ const TicketDetails = () => {
                 </div>
               </section>
             </div>
-            <label
-              htmlFor="my-drawer-2"
-              className="btn btn-primary drawer-button absolute lg:hidden"
-            >
-              <AiOutlineArrowRight />
-            </label>
           </div>
-          <div className="drawer-side overflow-hidden ">
+          <div className="drawer-side z-0 overflow-hidden ">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-            <ul className="menu mt-16 w-screen space-y-2  overflow-y-auto bg-base-300 p-4 text-base-content sm:w-60">
+            <ul className="menu mt-16 w-screen space-y-2 bg-base-300 p-4 text-base-content sm:w-60">
               {pageData.completed ? (
                 <>
                   <button onClick={ticketOpener} className="btn btn-error">
@@ -229,6 +225,17 @@ const TicketDetails = () => {
               </li>
             </ul>
           </div>
+          <label
+            onClick={() => {
+              setShowClose((prev) => !prev);
+            }}
+            htmlFor="my-drawer-2"
+            className={`btn ${
+              showClose ? "btn-error" : "btn-primary"
+            } drawer-button fixed bottom-6 right-6 z-0 sm:hidden lg:hidden`}
+          >
+            {showClose ? <AiOutlineClose /> : <FaLongArrowAltRight />}
+          </label>
         </div>
       )}
     </div>
