@@ -4,7 +4,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import Drawer from "../../../components/drawer/Drawer";
 
 export async function getServerSideProps() {
-  const res = await fetch("https://www.tickettracker.io/api/tickets");
+  const res = await fetch("http://localhost:3000/api/tickets");
   if (!res.ok) {
     console.log("error");
   }

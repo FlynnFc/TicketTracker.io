@@ -4,7 +4,7 @@ import Comment from "../comment/Comment";
 
 const CommentSection = () => {
   return (
-    <div className="flex w-[40%] flex-col items-center justify-start rounded bg-base-300 p-4 font-bold shadow-lg">
+    <div className="flex max-h-[40rem] flex-col items-center justify-start rounded bg-base-300 p-4 font-bold shadow-lg lg:w-[40%]">
       <h3 className="m-2 text-4xl  text-primary-content">Discussion</h3>
       <div className="scrollbar bordered my-4 overflow-y-auto rounded-l bg-base-300">
         <Comment

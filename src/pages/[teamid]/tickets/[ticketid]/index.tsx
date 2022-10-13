@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Navbar from "../../../../components/navbar/Navbar";
 import CommentSection from "../../../../components/commentsection/CommentSection";
-import Drawer from "../../../../components/drawer/Drawer";
+
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { useState } from "react";
+import Link from "next/link";
+import { toast, Toaster } from "react-hot-toast";
 
 type TicketProps = {
   title: string;
@@ -13,6 +15,7 @@ type TicketProps = {
   priority: string;
   ticketType: string;
   assignedTo: string;
+  completed: boolean;
 };
 
 const TicketDetails = () => {
@@ -22,13 +25,10 @@ const TicketDetails = () => {
 
   async function ticketFetchIdHandler(ticketid: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const ticketbyid = await fetch(
-      "https://www.tickettracker.io/api/ticketbyid",
-      {
-        method: "GET",
-        headers: { ticketId: ticketid },
-      }
-    );
+    const ticketbyid = await fetch("http://localhost:3000/api/ticketbyid", {
+      method: "GET",
+      headers: { ticketId: ticketid },
+    });
     if (!ticketbyid.ok) {
       console.log("error");
     }
@@ -40,21 +40,56 @@ const TicketDetails = () => {
     ticketFetchIdHandler(ticketid);
   }, [ticketid]);
 
+  const closeTicketHandler = async (props: boolean) => {
+    const response = await fetch("http://localhost:3000/api/editTicket", {
+      method: "PUT",
+      body: JSON.stringify({ completed: props, id: ticketid }),
+    });
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    return await response.json;
+  };
+
+  const ticketOpener = async () => {
+    toast.promise(closeTicketHandler(false), {
+      loading: "Opening Ticket...",
+      success: <b>Ticket opened</b>,
+      error: <b>Could not open this ticket</b>,
+    });
+  };
+
+  const ticketCloser = async () => {
+    toast.promise(closeTicketHandler(true), {
+      loading: "Closing Ticket...",
+      success: <b>Ticket Closed</b>,
+      error: <b>Could not close this ticket</b>,
+    });
+  };
+
   return (
     <div className="">
       <Navbar />
       {pageData && (
         <div className="drawer-mobile drawer">
+          <Toaster />
+
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content mt-[5vh] flex flex-col items-start justify-start">
-            <div className="mt-5 flex items-center justify-center">
+            <div
+              className={`mt-5 flex h-full items-center justify-center ${
+                pageData.completed && "border-8 border-error"
+              }`}
+            >
               <section className="w-[98%] rounded-lg p-4">
                 <div>
-                  <div className="flex max-h-[47rem] justify-evenly">
-                    <div className="flex w-[50%] flex-col items-center justify-between rounded bg-base-300 shadow-lg">
+                  <div className="flex max-h-[47rem] flex-col items-center lg:flex-row lg:items-start lg:justify-evenly">
+                    <div className="flex flex-col items-center justify-between rounded bg-base-300 shadow-lg lg:w-[50%]">
                       <div>
                         <h2 className="m-4 flex flex-col text-center text-4xl font-bold text-primary-content">
-                          Details for Ticket{" "}
+                          Details for Ticket
                           <span className="text-base">id: {ticketid}</span>
                         </h2>
                         <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-xl">
@@ -141,7 +176,59 @@ const TicketDetails = () => {
               <AiOutlineArrowRight />
             </label>
           </div>
-          <Drawer />
+          <div className="drawer-side overflow-hidden ">
+            <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+            <ul className="menu mt-16 w-screen space-y-2  overflow-y-auto bg-base-300 p-4 text-base-content sm:w-60">
+              {pageData.completed ? (
+                <>
+                  <button onClick={ticketOpener} className="btn btn-error">
+                    Open ticket
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={ticketCloser}
+                  className="btn btn-success font-bold"
+                >
+                  Close ticket
+                </button>
+              )}
+              <li>
+                <Link
+                  href={{
+                    pathname: "/[teamid]/tickets/create",
+                    query: { teamid: "demo" },
+                  }}
+                >
+                  <button className="btn btn-primary text-white">
+                    Create new Ticket
+                  </button>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{
+                    pathname: "/[teamid]/tickets/manage",
+                    query: { teamid: "demo" },
+                  }}
+                >
+                  <button className="btn btn-info text-white">
+                    Manage Tickets
+                  </button>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{
+                    pathname: "/[teamid]/tickets/[ticketid]",
+                    query: { teamid: "demo", ticketid: 2 },
+                  }}
+                >
+                  <a href="./tickets/Sheesh">Chomp</a>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       )}
     </div>

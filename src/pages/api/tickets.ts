@@ -6,7 +6,7 @@ export default async function assetHandler(req:any, res:any) {
   switch (method) {
     case 'GET':
       try {
-        const tickets = await prisma.ticket.findMany()
+        const tickets = await prisma.ticket.findMany({where:{completed: false}})
         res.status(200).json(tickets)
       } catch (e) {
         console.error('Request error', e)
