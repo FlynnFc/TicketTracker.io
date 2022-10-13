@@ -108,7 +108,8 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       assignedTo: "",
       id: "",
     });
-    return await response.json;
+    const res = await response.json;
+    return res;
   };
 
   const revertHandler = () => {
@@ -155,6 +156,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       assignedTo: "",
       id: "",
     });
+    getServerSideProps();
     return await response.json;
   };
 

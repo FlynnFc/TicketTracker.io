@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../../../components/navbar/Navbar";
 import CommentSection from "../../../../components/commentsection/CommentSection";
 
-import { AiOutlineArrowRight, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useState } from "react";
 import Link from "next/link";
@@ -51,7 +51,7 @@ const TicketDetails = () => {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-
+    ticketFetchIdHandler(ticketid);
     return await response.json;
   };
 
