@@ -5,7 +5,6 @@ export default async function assetHandler(req:any, res:any) {
   const { method } = req
   const {headers} = req
   const id = headers.ticketid
-  console.log("Console log", )
   switch (method) {
     case 'GET':
       try {

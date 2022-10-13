@@ -11,19 +11,6 @@ interface Formdata {
   assignedTo?: string;
 }
 
-// async function saveTicket(ticket: any) {
-//   const response = await fetch("/api/tickets/newTickets", {
-//     method: "POST",
-//     body: JSON.stringify(ticket),
-//   });
-
-//   if (!response.ok) {
-//     throw new Error(response.statusText);
-//   }
-
-//   return await response.json;
-// }
-
 const Create = () => {
   const [form, setForm] = useState<Formdata>({
     title: "",
@@ -51,10 +38,13 @@ const Create = () => {
   };
 
   const submitter = async () => {
-    const response = await fetch("http://localhost:3000/api/newTickets", {
-      method: "POST",
-      body: JSON.stringify(form),
-    });
+    const response = await fetch(
+      "https://www.tickettracker.io/api/newTickets",
+      {
+        method: "POST",
+        body: JSON.stringify(form),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);

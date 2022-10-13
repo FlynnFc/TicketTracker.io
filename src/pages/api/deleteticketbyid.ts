@@ -11,7 +11,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   try {
     const ticket = await JSON.parse(req.body);
-    console.log("clg",ticket)
     const savedContact = await prisma.ticket.delete({ where: {id: ticket.id}});
     res.status(200).json(savedContact);
   } catch (err) {

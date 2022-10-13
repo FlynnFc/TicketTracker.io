@@ -11,7 +11,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   try {
     const ticket = await JSON.parse(req.body);
-    console.log("clg",ticket)
     const savedTicket = await prisma.ticket.update({ where: {id: ticket.id}, data:ticket
     });
     res.status(200).json(savedTicket);

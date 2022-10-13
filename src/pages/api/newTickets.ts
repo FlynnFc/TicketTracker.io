@@ -12,7 +12,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const ticket: Prisma.TicketCreateInput = JSON.parse(req.body);
-    console.log("clg",ticket)
     const savedContact = await prisma.ticket.create({ data: ticket });
     res.status(200).json(savedContact);
   } catch (err) {

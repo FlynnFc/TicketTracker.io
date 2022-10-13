@@ -5,7 +5,7 @@ import { toast, Toaster } from "react-hot-toast";
 import Modal from "../../../components/modal/Modal";
 
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/tickets");
+  const res = await fetch("https://www.tickettracker.io/api/tickets");
   if (!res.ok) {
     console.log("error");
   }
@@ -91,10 +91,13 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   };
 
   const submitter = async () => {
-    const response = await fetch("http://localhost:3000/api/deleteticketbyid", {
-      method: "DELETE",
-      body: JSON.stringify({ id: ticketInfo.id }),
-    });
+    const response = await fetch(
+      "https://www.tickettracker.io/api/deleteticketbyid",
+      {
+        method: "DELETE",
+        body: JSON.stringify({ id: ticketInfo.id }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -139,10 +142,13 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   }, [ticketInfo]);
 
   const submitterPost = async () => {
-    const response = await fetch("http://localhost:3000/api/editTicket", {
-      method: "PUT",
-      body: JSON.stringify(form),
-    });
+    const response = await fetch(
+      "https://www.tickettracker.io/api/editTicket",
+      {
+        method: "PUT",
+        body: JSON.stringify(form),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -156,7 +162,6 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       assignedTo: "",
       id: "",
     });
-    getServerSideProps();
     return await response.json;
   };
 

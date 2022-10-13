@@ -27,10 +27,13 @@ const TicketDetails = () => {
 
   async function ticketFetchIdHandler(ticketid: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const ticketbyid = await fetch("http://localhost:3000/api/ticketbyid", {
-      method: "GET",
-      headers: { ticketId: ticketid },
-    });
+    const ticketbyid = await fetch(
+      "https://www.tickettracker.io/api/ticketbyid",
+      {
+        method: "GET",
+        headers: { ticketId: ticketid },
+      }
+    );
     if (!ticketbyid.ok) {
       console.log("error");
     }
