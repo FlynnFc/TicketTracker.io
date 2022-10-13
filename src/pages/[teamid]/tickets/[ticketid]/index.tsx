@@ -17,6 +17,7 @@ type TicketProps = {
   ticketType: string;
   assignedTo: string;
   completed: boolean;
+  Comments: [];
 };
 
 const TicketDetails = () => {
@@ -27,19 +28,15 @@ const TicketDetails = () => {
 
   async function ticketFetchIdHandler(ticketid: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const ticketbyid = await fetch(
-      "https://www.tickettracker.io/api/ticketbyid",
-      {
-        method: "GET",
-        headers: { ticketId: ticketid },
-      }
-    );
+    const ticketbyid = await fetch("http://localhost:3000/api/ticketbyid", {
+      method: "GET",
+      headers: { ticketId: ticketid },
+    });
     if (!ticketbyid.ok) {
       console.log("error");
     }
     const data = await ticketbyid.json();
     setPageData(() => data);
-    console.log(data);
   }
   useEffect(() => {
     ticketFetchIdHandler(ticketid);
@@ -82,97 +79,93 @@ const TicketDetails = () => {
           <Toaster />
 
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content mt-[5vh] flex flex-col items-start justify-start">
+          <div className="drawer-content mt-[5vh] flex flex-col items-center justify-between">
             <div
-              className={`mt-5 flex h-full items-center justify-center ${
-                pageData.completed && "border-8 border-error"
+              className={`mt-4 h-full w-full  ${
+                pageData.completed && "mt-4 border-8 border-error"
               }`}
             >
-              <section className="w-[98%] rounded-lg p-4">
-                <div>
-                  <div className=" flex flex-col items-stretch space-y-4 overflow-auto xl:mt-0 xl:max-h-[47rem] xl:flex-row xl:items-start xl:justify-evenly xl:space-y-0">
-                    <div className="flex flex-col items-center justify-between rounded bg-base-300 shadow-lg xl:w-[50%]">
-                      <div>
-                        <h2 className="m-4 flex flex-col text-center text-4xl font-bold text-primary-content">
-                          Details for Ticket
-                          <span className="text-base">id: {ticketid}</span>
-                        </h2>
-                        <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-xl">
-                          <li className="flex flex-col  justify-center text-center">
-                            <h3 className="font-bold">Ticket Title</h3>
-                            <p>{pageData.title}</p>
-                          </li>
-                          <li className="flex max-w-sm flex-col justify-center text-center">
-                            <h4 className="font-bold ">Ticket Description</h4>
-                            <p>{pageData.description}</p>
-                          </li>
-                          <li className="flex flex-col justify-center text-center">
-                            <h4 className="font-bold ">Ticket type</h4>
-                            <p>{pageData.ticketType}</p>
-                          </li>
-                        </ul>
-                        <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-xl">
-                          <li className="flex flex-col text-center">
-                            <h4 className="font-bold ">Assigned Developer</h4>
-                            <p>
-                              {pageData.assignedTo
-                                ? pageData.assignedTo
-                                : "No one assigned"}
-                            </p>
-                          </li>
-                          <li className="flex flex-col items-start text-center">
-                            <h4 className="font-bold ">Project</h4>
-                            <p>Example Project</p>
-                          </li>
-                          <li className="flex flex-col text-center">
-                            <h4 className="font-bold ">Priority</h4>
-                            <p>{pageData.priority}</p>
-                          </li>
-                        </ul>
-                      </div>
+              <div className="mt-[25vh] flex h-full min-h-max flex-col justify-evenly space-y-4 xl:mt-20 xl:max-h-[80%] xl:flex-row xl:items-stretch xl:space-y-0">
+                <div className="flex h-full flex-col items-center justify-between rounded bg-base-300 p-4 shadow-lg xl:w-[40%]">
+                  <div>
+                    <h2 className="m-4 flex flex-col text-center text-4xl font-bold text-primary-content">
+                      Details for Ticket
+                      <span className="text-base">id: {ticketid}</span>
+                    </h2>
+                    <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-xl">
+                      <li className="flex flex-col  justify-center text-center">
+                        <h3 className="font-bold">Ticket Title</h3>
+                        <p>{pageData.title}</p>
+                      </li>
+                      <li className="flex max-w-sm flex-col justify-center text-center">
+                        <h4 className="font-bold ">Ticket Description</h4>
+                        <p>{pageData.description}</p>
+                      </li>
+                      <li className="flex flex-col justify-center text-center">
+                        <h4 className="font-bold ">Ticket type</h4>
+                        <p>{pageData.ticketType}</p>
+                      </li>
+                    </ul>
+                    <ul className="mx-4 flex flex-row items-start justify-evenly space-x-10 py-4 text-xl">
+                      <li className="flex flex-col text-center">
+                        <h4 className="font-bold ">Assigned Developer</h4>
+                        <p>
+                          {pageData.assignedTo
+                            ? pageData.assignedTo
+                            : "No one assigned"}
+                        </p>
+                      </li>
+                      <li className="flex flex-col items-start text-center">
+                        <h4 className="font-bold ">Project</h4>
+                        <p>Example Project</p>
+                      </li>
+                      <li className="flex flex-col text-center">
+                        <h4 className="font-bold ">Priority</h4>
+                        <p>{pageData.priority}</p>
+                      </li>
+                    </ul>
+                  </div>
 
-                      <div className="mb-12 w-[90%] overflow-y-auto">
-                        {" "}
-                        <h3 className="m-4 text-center text-4xl font-bold  text-primary-content">
-                          Ticket History
-                        </h3>
-                        <table className="table w-full ">
-                          <thead>
-                            <tr>
-                              <th>Property</th>
-                              <th>Previous Value</th>
-                              <th>New Value</th>
-                              <th>Date Changed</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>AssignedUserId</td>
-                              <td>John Doe</td>
-                              <td>Mike Smith</td>
-                              <td>{new Date().toDateString()}</td>
-                            </tr>
-                            <tr>
-                              <td>Ticket Title</td>
-                              <td>Example Ticket</td>
-                              <td>Fix image upload button</td>
-                              <td>{new Date().toDateString()}</td>
-                            </tr>
-                            <tr>
-                              <td>Priority</td>
-                              <td>Medium</td>
-                              <td>High</td>
-                              <td>{new Date().toDateString()}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                    <CommentSection />
+                  <div className="mb-12 w-[90%] overflow-y-auto">
+                    {" "}
+                    <h3 className="m-4 text-center text-4xl font-bold  text-primary-content">
+                      Ticket History
+                    </h3>
+                    <table className="table w-full ">
+                      <thead>
+                        <tr>
+                          <th>Property</th>
+                          <th>Previous Value</th>
+                          <th>New Value</th>
+                          <th>Date Changed</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>AssignedUserId</td>
+                          <td>John Doe</td>
+                          <td>Mike Smith</td>
+                          <td>{new Date().toDateString()}</td>
+                        </tr>
+                        <tr>
+                          <td>Ticket Title</td>
+                          <td>Example Ticket</td>
+                          <td>Fix image upload button</td>
+                          <td>{new Date().toDateString()}</td>
+                        </tr>
+                        <tr>
+                          <td>Priority</td>
+                          <td>Medium</td>
+                          <td>High</td>
+                          <td>{new Date().toDateString()}</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-              </section>
+
+                <CommentSection id={ticketid} />
+              </div>
             </div>
           </div>
           <div className="drawer-side z-0 overflow-hidden ">
