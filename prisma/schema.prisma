@@ -80,6 +80,7 @@ model Ticket {
     ticketType  String
     assignedTo  String
     complexity  String     @default("")
+    completed   Boolean    @default(false)
     comments    Comments[]
 }
 
