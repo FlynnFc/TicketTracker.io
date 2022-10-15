@@ -177,8 +177,8 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     <div className="max-h-[80vh]">
       <Navbar />
       <Toaster />
-      <div className="mt-20 flex flex-col items-start justify-center text-neutral-content md:mx-10 lg:flex-row">
-        <section className="top-10 z-10 w-full min-w-max items-center rounded bg-base-300 p-6 text-white shadow lg:sticky">
+      <div className="mt-20 flex flex-col items-center justify-center text-neutral-content md:mx-10 lg:flex-row lg:items-start">
+        <section className="top-10 z-10 w-full min-w-max max-w-xl items-center rounded bg-base-300 p-6 text-white shadow lg:sticky">
           <h1 className="my-2 text-center text-2xl font-bold">Edit users</h1>
           <div>
             <form
@@ -192,7 +192,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
               <div className="w-full max-w-sm">
                 <input
                   type="text"
-                  placeholder="title"
+                  placeholder="Title"
                   className="input w-full max-w-sm"
                   value={form.title}
                   onChange={(e) => {
