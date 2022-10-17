@@ -193,7 +193,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                 <input
                   type="text"
                   placeholder="Title"
-                  className="input w-full max-w-sm"
+                  className="input w-full max-w-sm  "
                   value={form.title}
                   onChange={(e) => {
                     if (ticketInfo.id) {
