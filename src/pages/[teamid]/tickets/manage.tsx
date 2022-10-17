@@ -3,6 +3,7 @@ import Navbar from "../../../components/navbar/Navbar";
 import TicketManagePreview from "../../../components/ticketpreview/TicketMangePreview";
 import { toast, Toaster } from "react-hot-toast";
 import Modal from "../../../components/modal/Modal";
+import { any } from "zod";
 
 export async function getServerSideProps() {
   const res = await fetch("https://www.tickettracker.io/api/tickets");
@@ -18,6 +19,7 @@ export async function getServerSideProps() {
 }
 
 type NewTicketProp = {
+  filter(arg0: (item: any) => boolean): unknown;
   map(
     arg0: (el: {
       ticketType: string;
@@ -98,17 +100,22 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   }, [props.ticketprop]);
 
   const submitter = async () => {
-    const response = await fetch(
-      "https://www.tickettracker.io/api/deleteticketbyid",
-      {
-        method: "DELETE",
-        body: JSON.stringify({ id: ticketInfo.id }),
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/deleteticketbyid", {
+      method: "DELETE",
+      body: JSON.stringify({ id: ticketInfo.id }),
+    });
 
     if (!response.ok) {
       throw new Error(response.statusText);
     }
+    const tempTickets = tickets;
+    if (tempTickets) {
+      const newTickets: any = tempTickets.filter(
+        (item) => item.id !== ticketInfo.id
+      );
+      setTickets(newTickets);
+    }
+
     setForm({
       title: "",
       description: "",
@@ -149,13 +156,10 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   }, [ticketInfo]);
 
   const submitterPost = async () => {
-    const response = await fetch(
-      "https://www.tickettracker.io/api/editTicket",
-      {
-        method: "PUT",
-        body: JSON.stringify(form),
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/editTicket", {
+      method: "PUT",
+      body: JSON.stringify(form),
+    });
 
     if (!response.ok) {
       throw new Error(response.statusText);
