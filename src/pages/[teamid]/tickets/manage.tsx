@@ -49,6 +49,7 @@ type TickProps = {
 };
 
 const Managetickets = (props: { ticketprop: NewTicketProp }) => {
+  const [tickets, setTickets] = useState<NewTicketProp>();
   const [submitActive, setSubmitActive] = useState(true);
   const [ticketInfo, setTicketInfo] = useState({
     priority: "",
@@ -89,6 +90,12 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       error: <b>{`Could not delete this ticket`}</b>,
     });
   };
+
+  useEffect(() => {
+    setTickets(() => {
+      return props.ticketprop;
+    });
+  }, [props.ticketprop]);
 
   const submitter = async () => {
     const response = await fetch(
@@ -322,23 +329,24 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
           </div>
         </section>
         <section className="z-0 flex flex-wrap items-stretch justify-center">
-          {props.ticketprop.map((el) => {
-            return (
-              <>
-                <TicketManagePreview
-                  clickHandler={onSelectHandler}
-                  key={el.id}
-                  title={el.title}
-                  description={el.description}
-                  priority={el.priority}
-                  id={el.id}
-                  assignedTo={el.assignedTo}
-                  complexity={el.complexity}
-                  ticketType={el.ticketType}
-                />
-              </>
-            );
-          })}
+          {tickets &&
+            tickets.map((el) => {
+              return (
+                <>
+                  <TicketManagePreview
+                    clickHandler={onSelectHandler}
+                    key={el.id}
+                    title={el.title}
+                    description={el.description}
+                    priority={el.priority}
+                    id={el.id}
+                    assignedTo={el.assignedTo}
+                    complexity={el.complexity}
+                    ticketType={el.ticketType}
+                  />
+                </>
+              );
+            })}
         </section>
       </div>
     </div>

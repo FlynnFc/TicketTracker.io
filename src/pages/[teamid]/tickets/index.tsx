@@ -2,7 +2,7 @@ import Navbar from "../../../components/navbar/Navbar";
 import Ticketpreview from "../../../components/ticketpreview/Ticketpreview";
 import { AiOutlineArrowRight, AiOutlineClose } from "react-icons/ai";
 import Drawer from "../../../components/drawer/Drawer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps() {
   const res = await fetch("https://www.tickettracker.io/api/tickets");
@@ -35,7 +35,12 @@ type NewTicketProps = {
 };
 
 const Index = (props: { ticketprop: NewTicketProps }) => {
+  const [tickets, setTickets] = useState<NewTicketProps>();
   const [showClose, setShowClose] = useState(false);
+
+  useEffect(() => {
+    setTickets(props.ticketprop);
+  }, [props.ticketprop]);
   return (
     <div className="max-h-screen">
       <Navbar />
@@ -43,25 +48,26 @@ const Index = (props: { ticketprop: NewTicketProps }) => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content mt-[8vh]">
           <section className="ml-6 flex flex-wrap items-stretch justify-center md:justify-start">
-            {props.ticketprop.map(
-              (el: {
-                priority: string;
-                description: string;
-                title: string;
-                id: string;
-              }) => {
-                return (
-                  <Ticketpreview
-                    key={el.id}
-                    title={el.title}
-                    description={el.description}
-                    priority={el.priority}
-                    id={el.id}
-                    assignedTo={""}
-                  />
-                );
-              }
-            )}
+            {tickets &&
+              tickets.map(
+                (el: {
+                  priority: string;
+                  description: string;
+                  title: string;
+                  id: string;
+                }) => {
+                  return (
+                    <Ticketpreview
+                      key={el.id}
+                      title={el.title}
+                      description={el.description}
+                      priority={el.priority}
+                      id={el.id}
+                      assignedTo={""}
+                    />
+                  );
+                }
+              )}
           </section>
         </div>
         <Drawer />
