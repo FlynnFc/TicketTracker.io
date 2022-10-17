@@ -3,7 +3,6 @@ import Navbar from "../../../components/navbar/Navbar";
 import TicketManagePreview from "../../../components/ticketpreview/TicketMangePreview";
 import { toast, Toaster } from "react-hot-toast";
 import Modal from "../../../components/modal/Modal";
-import { any } from "zod";
 
 export async function getServerSideProps() {
   const res = await fetch("https://www.tickettracker.io/api/tickets");
@@ -100,10 +99,13 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   }, [props.ticketprop]);
 
   const submitter = async () => {
-    const response = await fetch("http://localhost:3000/api/deleteticketbyid", {
-      method: "DELETE",
-      body: JSON.stringify({ id: ticketInfo.id }),
-    });
+    const response = await fetch(
+      "https://tickettracker.io/api/deleteticketbyid",
+      {
+        method: "DELETE",
+        body: JSON.stringify({ id: ticketInfo.id }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -156,7 +158,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   }, [ticketInfo]);
 
   const submitterPost = async () => {
-    const response = await fetch("http://localhost:3000/api/editTicket", {
+    const response = await fetch("https://tickettracker.io/api/editTicket", {
       method: "PUT",
       body: JSON.stringify(form),
     });
@@ -164,6 +166,12 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
+    // const tempTickets = tickets;
+    // if (tempTickets) {
+    //   const newTickets: any = tempTickets.filter(
+    //     (item) => item.id !== ticketInfo.id
+    //   );
+    //   setTickets(newTickets);
     setForm({
       title: "",
       description: "",
@@ -175,6 +183,8 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     });
     return await response.json;
   };
+
+  console.log(tickets);
 
   const submitHandler = async () => {
     toast.promise(submitterPost(), {
@@ -188,7 +198,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
     <div className="max-h-[80vh]">
       <Navbar />
       <Toaster />
-      <div className="mt-20 flex flex-col items-center justify-center text-neutral-content md:mx-10 lg:flex-row lg:items-start">
+      <div className="justify-betwen mt-20 flex flex-col items-center text-neutral-content md:mx-10 lg:flex-row lg:items-start">
         <section className="top-10 z-10 w-full min-w-max max-w-xl items-center rounded bg-base-300 p-6 text-white shadow lg:sticky">
           <h1 className="my-2 text-center text-2xl font-bold">Edit users</h1>
           <div>
