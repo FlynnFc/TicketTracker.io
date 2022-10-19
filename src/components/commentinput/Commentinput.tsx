@@ -7,7 +7,7 @@ const Commentinput = (props: any) => {
   const [commentInfo, setCommentInfo] = useState({
     name: session?.user?.name,
     message: "",
-    ticket: { connect: { id: props.id } },
+    ticketId: props.id,
     avatar: "e",
   });
   const submitterPost = async () => {
@@ -16,19 +16,21 @@ const Commentinput = (props: any) => {
       body: JSON.stringify(commentInfo),
     });
     if (!response.ok) {
-      throw new Error(response.statusText);
+      console.error(response.statusText);
     }
+
     setCommentInfo({
       name: session?.user?.name,
       message: commentInfo.message,
-      ticket: { connect: { id: props.id } },
+      ticketId: props.id,
       avatar: "",
     });
+    props.setComments(...props.comments, commentInfo);
     return await response.json;
   };
 
   return (
-    <div className="flex w-full flex-row items-stretch justify-center">
+    <div className="flex w-full flex-row items-stretch justify-center shadow-lg">
       <input
         onChange={(e) =>
           setCommentInfo({ ...commentInfo, message: e.target.value })

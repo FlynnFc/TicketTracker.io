@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Commentinput from "../../commentinput/Commentinput";
+import Commentinput from "../commentinput/Commentinput";
 import Comment from "../comment/Comment";
 
 type commentProps = {
@@ -14,30 +14,30 @@ type commentProps = {
 
 const CommentSection = (props: { id: any }) => {
   const [comments, setComments] = useState<commentProps>();
-  const commentHandler = async () => {
-    const res = await fetch("http://localhost:3000/api/comments", {
-      method: "GET",
-      headers: { ticketId: props.id },
-    });
-    if (!res.ok) {
-      console.log("error");
-    }
-    const data = await res.json();
-    setComments(() => data);
-  };
 
   useEffect(() => {
+    const commentHandler = async () => {
+      const res = await fetch("http://localhost:3000/api/comments", {
+        method: "GET",
+        headers: { ticketId: props.id },
+      });
+      if (!res.ok) {
+        console.log("error");
+      }
+      const data = await res.json();
+      setComments(() => data);
+    };
     commentHandler();
-  }, []);
+  }, [props.id]);
 
   console.log(comments);
   return (
-    <div className="scrollbar bordered flex h-full min-w-[40%] flex-col items-center justify-between overflow-y-auto rounded rounded-l bg-base-300 p-8 font-bold shadow-lg xl:w-[40%] ">
+    <div className="bordered flex h-full min-w-[40%] flex-col items-center justify-between rounded rounded-l bg-base-300 p-8 font-bold shadow-lg xl:w-[40%] ">
       <h3 className="mb-5 items-start justify-start text-center text-4xl text-primary-content">
         Discussion
       </h3>
-      <div className="flex h-full w-full flex-col items-start justify-between font-bold ">
-        <div className="">
+      <div className="flex h-full w-full flex-col items-start  justify-between font-bold">
+        <div className="scrollbar h-[88%] w-full overflow-y-auto">
           {comments &&
             comments.map((el: commentProps) => {
               return (
@@ -49,8 +49,12 @@ const CommentSection = (props: { id: any }) => {
                 />
               );
             })}
-        </div>
-        <Commentinput id={props.id} />
+        </div>{" "}
+        <Commentinput
+          comments={comments}
+          setComments={setComments}
+          id={props.id}
+        />
       </div>
     </div>
   );

@@ -14,8 +14,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
 
     const ticket: Prisma.CommentsCreateInput = JSON.parse(req.body);
-    const savedContact = await prisma.comments.create({data: ticket});
-    console.log(savedContact)
+    console.log(ticket)
+    const savedContact = await prisma.comments.create({data: ticket });
+
     res.status(200).json(savedContact);
   } catch (err) {
     res.status(400).json({ message: err });

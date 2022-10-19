@@ -43,7 +43,7 @@ const TicketDetails = () => {
   }, [ticketid]);
 
   const closeTicketHandler = async (props: boolean) => {
-    const response = await fetch("http://localhost:3000/api/editTicket", {
+    const response = await fetch("https://tickettracker.io/api/editTicket", {
       method: "PUT",
       body: JSON.stringify({ completed: props, id: ticketid }),
     });
