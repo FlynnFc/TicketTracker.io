@@ -17,7 +17,7 @@ const CommentSection = (props: { id: any }) => {
 
   useEffect(() => {
     const commentHandler = async () => {
-      const res = await fetch("https://www.tickettracker.io//api/comments", {
+      const res = await fetch("/api/comments", {
         method: "GET",
         headers: { ticketId: props.id },
       });
@@ -37,7 +37,7 @@ const CommentSection = (props: { id: any }) => {
         Discussion
       </h3>
       <div className="flex h-full w-full flex-col items-start  justify-between font-bold">
-        <div className="scrollbar h-[88%] w-full overflow-y-auto">
+        <div className="scrollbar  h-[88%] w-full overflow-y-auto">
           {comments &&
             comments.map((el: commentProps) => {
               return (

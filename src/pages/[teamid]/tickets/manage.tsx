@@ -158,10 +158,13 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
   }, [ticketInfo]);
 
   const submitterPost = async () => {
-    const response = await fetch("https://tickettracker.io/api/editTicket", {
-      method: "PUT",
-      body: JSON.stringify(form),
-    });
+    const response = await fetch(
+      "https://www.tickettracker.io/api/editTicket",
+      {
+        method: "PUT",
+        body: JSON.stringify(form),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -234,7 +237,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   }}
                   type="description"
                   placeholder="description"
-                  className="input w-full max-w-sm focus:border-none"
+                  className="input w-full max-w-sm"
                   value={form.description}
                 />
               </div>

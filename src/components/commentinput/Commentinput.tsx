@@ -10,15 +10,12 @@ const Commentinput = (props: any) => {
     ticketId: props.id,
     avatar: "e",
   });
-  const inputRef = createRef();
+
   const submitterPost = async () => {
-    const response = await fetch(
-      "https://www.tickettracker.io//api/newComment",
-      {
-        method: "POST",
-        body: JSON.stringify(commentInfo),
-      }
-    );
+    const response = await fetch("/api/newComment", {
+      method: "POST",
+      body: JSON.stringify(commentInfo),
+    });
     if (!response.ok) {
       console.error(response.statusText);
     }
@@ -34,17 +31,21 @@ const Commentinput = (props: any) => {
   };
 
   return (
-    <div className="flex w-full flex-row items-stretch justify-center shadow-lg">
+    <div className="flex w-full flex-row items-stretch justify-center">
       <input
         onChange={(e) =>
           setCommentInfo({ ...commentInfo, message: e.target.value })
         }
         type="text"
         placeholder="Type here"
-        className="input h-auto w-full max-w-xl rounded-r-none p-4 text-xl focus:outline-none"
+        className="input h-auto w-full max-w-xl rounded-r-none bg-neutral p-4 text-xl shadow-xl focus:outline-none"
       />
       <button
-        onClick={submitterPost}
+        onClick={() => {
+          if (commentInfo.message) {
+            submitterPost();
+          }
+        }}
         className="btn btn-square h-auto w-auto rounded-l-none border-l-0 bg-primary p-2 text-xl text-white"
       >
         Send

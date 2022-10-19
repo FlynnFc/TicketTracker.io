@@ -29,7 +29,7 @@ const TicketDetails = () => {
   async function ticketFetchIdHandler(ticketid: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const ticketbyid = await fetch(
-      "https://www.tickettracker.io//api/ticketbyid",
+      "https://www.tickettracker.io/api/ticketbyid",
       {
         method: "GET",
         headers: { ticketId: ticketid },
@@ -47,7 +47,7 @@ const TicketDetails = () => {
 
   const closeTicketHandler = async (props: boolean) => {
     const response = await fetch(
-      "https://www.tickettracker.io//api/editTicket",
+      "https://www.tickettracker.io/api/editTicket",
       {
         method: "PUT",
         body: JSON.stringify({ completed: props, id: ticketid }),
