@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createRef, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { PrismaClient } from "@prisma/client";
 
@@ -10,9 +10,10 @@ const Commentinput = (props: any) => {
     ticketId: props.id,
     avatar: "e",
   });
+  const inputRef = createRef();
   const submitterPost = async () => {
     const response = await fetch(
-      "https://www.tickettracker.io/api/newComment",
+      "https://www.tickettracker.io//api/newComment",
       {
         method: "POST",
         body: JSON.stringify(commentInfo),
@@ -28,7 +29,7 @@ const Commentinput = (props: any) => {
       ticketId: props.id,
       avatar: "",
     });
-    props.setComments(...props.comments, commentInfo);
+    props.setComments([...props.comments, commentInfo]);
     return await response.json;
   };
 

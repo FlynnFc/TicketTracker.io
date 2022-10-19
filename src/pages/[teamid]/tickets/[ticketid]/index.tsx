@@ -29,7 +29,7 @@ const TicketDetails = () => {
   async function ticketFetchIdHandler(ticketid: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const ticketbyid = await fetch(
-      "https://www.tickettracker.io/api/ticketbyid",
+      "https://www.tickettracker.io//api/ticketbyid",
       {
         method: "GET",
         headers: { ticketId: ticketid },
@@ -47,7 +47,7 @@ const TicketDetails = () => {
 
   const closeTicketHandler = async (props: boolean) => {
     const response = await fetch(
-      "https://www.tickettracker.io/api/editTicket",
+      "https://www.tickettracker.io//api/editTicket",
       {
         method: "PUT",
         body: JSON.stringify({ completed: props, id: ticketid }),
@@ -87,8 +87,8 @@ const TicketDetails = () => {
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content mt-[5vh] flex flex-col items-center justify-between">
             <div
-              className={`mt-4 h-full w-full  ${
-                pageData.completed && "mt-4 border-8 border-error"
+              className={`mt-4 box-border h-full w-full  ${
+                pageData.completed && "mt-4 border-l-8 border-error"
               }`}
             >
               <div className="mt-[25vh] flex h-full min-h-max flex-col justify-evenly space-y-4 xl:mt-20 xl:max-h-[80%] xl:flex-row xl:items-stretch xl:space-y-0">

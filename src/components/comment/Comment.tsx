@@ -16,7 +16,7 @@ const Comment = (props: CommentProps) => {
           </div>
         </div>
       </div>
-      <section className="flex flex-col rounded bg-primary p-4 shadow-lg">
+      <section className="flex w-full flex-col rounded bg-primary p-4 shadow-lg">
         <div className="flew-row flex space-x-4">
           <h4 className="text-xl text-primary-content">{props.name}</h4>
           <span className="text-base-content">{props.time}</span>
