@@ -27,16 +27,20 @@ const Drawer = () => {
             <button className="btn btn-info text-white">Manage Tickets</button>
           </Link>
         </li>
-        <li>
-          <Link
-            href={{
-              pathname: "/[teamid]/tickets/[ticketid]",
-              query: { teamid: "demo", ticketid: 2 },
-            }}
-          >
-            <a href="./tickets/Sheesh">Chomp</a>
-          </Link>
-        </li>
+        <ul className="">
+          <li>
+            <Link
+              href={{
+                pathname: "/[teamid]/tickets/closed",
+                query: { teamid: "demo" },
+              }}
+            >
+              <button className="btn btn-ghost text-white">
+                Closed Tickets
+              </button>
+            </Link>
+          </li>
+        </ul>
       </ul>
     </div>
   );

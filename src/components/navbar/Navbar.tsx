@@ -37,18 +37,6 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a>
-                <HiOutlineUserGroup />
-                Manage Projet users
-              </a>
-            </li>
-            <li>
-              <a>
-                <AiOutlineProject />
-                Projects
-              </a>
-            </li>
-            <li>
               <Link
                 href={{
                   pathname: "/[teamid]/tickets/",
