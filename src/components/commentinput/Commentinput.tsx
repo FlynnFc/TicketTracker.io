@@ -11,10 +11,13 @@ const Commentinput = (props: any) => {
     avatar: "e",
   });
   const submitterPost = async () => {
-    const response = await fetch("http://localhost:3000/api/newComment", {
-      method: "POST",
-      body: JSON.stringify(commentInfo),
-    });
+    const response = await fetch(
+      "https://www.tickettracker.io/api/newComment",
+      {
+        method: "POST",
+        body: JSON.stringify(commentInfo),
+      }
+    );
     if (!response.ok) {
       console.error(response.statusText);
     }

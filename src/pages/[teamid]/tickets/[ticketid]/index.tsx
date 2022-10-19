@@ -28,10 +28,13 @@ const TicketDetails = () => {
 
   async function ticketFetchIdHandler(ticketid: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const ticketbyid = await fetch("http://localhost:3000/api/ticketbyid", {
-      method: "GET",
-      headers: { ticketId: ticketid },
-    });
+    const ticketbyid = await fetch(
+      "https://www.tickettracker.io/api/ticketbyid",
+      {
+        method: "GET",
+        headers: { ticketId: ticketid },
+      }
+    );
     if (!ticketbyid.ok) {
       console.log("error");
     }
@@ -43,10 +46,13 @@ const TicketDetails = () => {
   }, [ticketid]);
 
   const closeTicketHandler = async (props: boolean) => {
-    const response = await fetch("https://tickettracker.io/api/editTicket", {
-      method: "PUT",
-      body: JSON.stringify({ completed: props, id: ticketid }),
-    });
+    const response = await fetch(
+      "https://www.tickettracker.io/api/editTicket",
+      {
+        method: "PUT",
+        body: JSON.stringify({ completed: props, id: ticketid }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);
