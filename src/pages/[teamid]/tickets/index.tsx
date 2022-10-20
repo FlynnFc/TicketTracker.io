@@ -44,7 +44,7 @@ const Index = (props: { ticketprop: NewTicketProps }) => {
   return (
     <div className="max-h-screen">
       <Navbar />
-      <div className="drawer-mobile drawer">
+      <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content mt-[8vh]">
           <section className="ml-6 flex flex-wrap items-stretch justify-center md:justify-start">

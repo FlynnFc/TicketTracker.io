@@ -100,7 +100,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
 
   const submitter = async () => {
     const response = await fetch(
-      "https://tickettracker.io/api/deleteticketbyid",
+      "https://www.tickettracker.io/api/deleteticketbyid",
       {
         method: "DELETE",
         body: JSON.stringify({ id: ticketInfo.id }),

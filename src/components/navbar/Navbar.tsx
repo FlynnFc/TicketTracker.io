@@ -52,16 +52,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className="navbar-center">
-        <Link
-          href={{
-            pathname: "/[teamid]/dashboard",
-            query: { teamid: "demo" },
-          }}
-        >
-          <a className="text-xl font-semibold normal-case">Dashboard</a>
-        </Link>
-      </div>
+      <div className="navbar-center"></div>
       <div className="navbar-end">
         <LoginBtn />
       </div>
