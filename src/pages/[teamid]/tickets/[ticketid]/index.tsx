@@ -215,16 +215,6 @@ const TicketDetails = () => {
                   </button>
                 </Link>
               </li>
-              <li>
-                <Link
-                  href={{
-                    pathname: "/[teamid]/tickets/[ticketid]",
-                    query: { teamid: "demo", ticketid: 2 },
-                  }}
-                >
-                  <a href="./tickets/Sheesh">Chomp</a>
-                </Link>
-              </li>
             </ul>
           </div>
           <label
