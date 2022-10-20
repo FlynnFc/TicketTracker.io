@@ -1,5 +1,6 @@
+import Image from "next/image";
 import React from "react";
-
+import profpic from "./profpic.png";
 type CommentProps = {
   name: string;
   message: string;
@@ -12,7 +13,7 @@ const Comment = (props: CommentProps) => {
       <div className="">
         <div className="avatar mr-1">
           <div className="w-12 rounded">
-            <img src="https://placeimg.com/192/192/people" />
+            <Image alt="profile" src={profpic} />
           </div>
         </div>
       </div>
