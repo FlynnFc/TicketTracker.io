@@ -2,6 +2,7 @@ import { useState } from "react";
 import Drawer from "../../../components/drawer/Drawer";
 import Navbar from "../../../components/navbar/Navbar";
 import { toast, Toaster } from "react-hot-toast";
+import { AiOutlineArrowRight, AiOutlineClose } from "react-icons/ai";
 interface Formdata {
   title: string;
   description: string;
@@ -20,7 +21,7 @@ const Create = () => {
     complexity: "",
     assignedTo: "",
   });
-
+  const [showClose, setShowClose] = useState(false);
   const submitHandler = async () => {
     if (
       form.ticketType &&
@@ -62,12 +63,11 @@ const Create = () => {
 
   return (
     <>
-      <Navbar />
       <Toaster />
       <div className="drawer-mobile drawer">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex w-[90%] items-center">
-          <div className="flex w-[70%] flex-col rounded-2xl bg-base-300 p-12 md:mx-auto lg:w-[50%]">
+        <div className="drawer-content flex w-[85%] items-center justify-center">
+          <div className="flex w-[80%] flex-col  rounded-2xl bg-base-300 p-12 md:mx-auto xl:w-[50%]">
             <h1 className="text-center text-3xl font-bold text-base-content">
               Creating a new ticket
             </h1>
@@ -186,11 +186,18 @@ const Create = () => {
               </button>
             </form>
           </div>
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button fixed top-16 lg:hidden"
-          ></label>
-        </div>
+        </div>{" "}
+        <label
+          onClick={() => {
+            setShowClose((prev) => !prev);
+          }}
+          htmlFor="my-drawer-2"
+          className={`btn ${
+            showClose ? "btn-error" : "btn-primary"
+          } drawer-button fixed bottom-6 right-6 z-40 lg:hidden`}
+        >
+          {showClose ? <AiOutlineClose /> : <AiOutlineArrowRight />}
+        </label>
         <Drawer />
       </div>
     </>
