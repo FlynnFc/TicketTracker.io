@@ -18,7 +18,7 @@ const Miniticket = (props: MiniticketProps) => {
   }, [props.priority]);
   return (
     <div
-      className={`w-96 bg-${bgColor} m-4 flex flex-col items-center justify-between rounded-lg p-4 text-center text-primary-content md:flex-row md:text-start`}
+      className={`w-96 bg-${bgColor} mr-4 mb-4 flex flex-col items-center justify-between rounded-lg p-4 text-center text-primary-content md:flex-row md:text-start`}
     >
       <h2 className="card-title px-1 text-neutral">{props.title}</h2>
       <div className="card-actions justify-end">
