@@ -14,7 +14,7 @@ const Hero = () => {
           <section className="py-6 ">
             <p className="text-base ">
               This site is still currently in early development. You can follow
-              progress on the site on{" "}
+              progress on the site on
               <a
                 className="font-bold"
                 target="_blank"
@@ -27,7 +27,7 @@ const Hero = () => {
           </section>
           <Link href={"demo/dashboard"}>
             <button className="btn btn-primary" disabled>
-              View a demo
+              Sign in to access demo
             </button>
           </Link>
         </div>
