@@ -355,7 +355,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   </div>
                 </div>
               </section>
-              <section className="z-0 flex flex-wrap items-stretch justify-center">
+              <section className="z-0 flex flex-wrap">
                 {tickets &&
                   tickets.map((el) => {
                     return (
