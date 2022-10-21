@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <div className="navbar absolute top-0 z-50 bg-neutral">
       <div className="navbar-start">
-        <div className="dropdown">
+        {/* <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -50,9 +50,20 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
-      <div className="navbar-center"></div>
+      <div className="navbar-center">
+        <Link
+          href={{
+            pathname: "/[teamid]/dashboard/",
+            query: { teamid: "demo" },
+          }}
+        >
+          <div className="btn btn-outline cursor-pointer border-0 text-xl font-bold transition-all hover:scale-105">
+            Dashboard
+          </div>
+        </Link>
+      </div>
       <div className="navbar-end">
         <LoginBtn />
       </div>
