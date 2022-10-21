@@ -69,8 +69,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
     <>
       {session ? (
         <>
-          <Navbar />
-          <div className="drawer-mobile drawer">
+          <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content mt-20 ml-4 flex flex-col">
               <section className="flex space-x-4">
