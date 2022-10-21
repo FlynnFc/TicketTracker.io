@@ -79,7 +79,6 @@ const TicketDetails = () => {
 
   return (
     <div className="">
-      <Navbar />
       {pageData && (
         <div className="drawer-mobile drawer">
           <Toaster />
