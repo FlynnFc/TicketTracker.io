@@ -203,7 +203,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
       <Toaster />
       <div className="justify-betwen mt-20 flex flex-col items-center text-neutral-content md:mx-10 lg:flex-row lg:items-start">
         <section className="top-10 z-10 w-full min-w-max max-w-xl items-center rounded bg-base-300 p-6 text-white shadow lg:sticky">
-          <h1 className="my-2 text-center text-2xl font-bold">Edit users</h1>
+          <h1 className="my-2 text-center text-2xl font-bold">Edit Tickets</h1>
           <div>
             <form
               className="flex flex-col items-center justify-center space-y-2"
