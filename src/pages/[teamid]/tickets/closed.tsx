@@ -40,11 +40,9 @@ const Closed = (props: { ticketprop: newTicketProps }) => {
   const session = useSession();
   return (
     <>
-      <Navbar />
-
       <div className="drawer-mobile drawer">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content mt-[8vh]">
+        <div className="drawer-content ml-6 mt-[8vh]">
           {session ? (
             <div>
               <section className="top-16 left-2 flex w-full flex-row justify-start">
