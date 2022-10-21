@@ -207,8 +207,8 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
         <div className="drawer-mobile drawer">
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col">
-            <div className="justify-betwen mt-20 flex flex-col items-center text-neutral-content md:mx-10 lg:flex-row lg:items-start">
-              <section className="z-10 w-full min-w-max max-w-xl items-center rounded bg-base-300 p-6 text-white shadow lg:sticky">
+            <div className="justify-betwen mt-20 flex flex-col items-center text-neutral-content md:mx-4 lg:flex-row lg:items-start">
+              <section className="z-10 w-full min-w-max max-w-xl items-center rounded bg-base-300 p-10 text-white shadow lg:sticky">
                 <h1 className="my-2 text-center text-2xl font-bold">
                   Edit Tickets
                 </h1>
@@ -355,7 +355,7 @@ const Managetickets = (props: { ticketprop: NewTicketProp }) => {
                   </div>
                 </div>
               </section>
-              <section className="z-0 flex flex-wrap">
+              <section className="z-0 flex flex-col flex-wrap lg:flex-row">
                 {tickets &&
                   tickets.map((el) => {
                     return (
