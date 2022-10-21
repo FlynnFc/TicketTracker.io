@@ -5,6 +5,7 @@ import type { AppType } from "next/app";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
+import Navbar from "../components/navbar/Navbar";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -23,6 +24,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <meta name="description" content="Ticket Tracking App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar />
       <Component {...pageProps} />
     </SessionProvider>
   );
