@@ -8,11 +8,21 @@ const Drawer = () => {
         <li>
           <Link
             href={{
+              pathname: "/[teamid]/tickets",
+              query: { teamid: "demo" },
+            }}
+          >
+            <button className="btn btn-primary text-white">Tickets</button>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href={{
               pathname: "/[teamid]/tickets/create",
               query: { teamid: "demo" },
             }}
           >
-            <button className="btn btn-primary text-white">
+            <button className="btn btn-info text-white">
               Create new Ticket
             </button>
           </Link>
@@ -24,7 +34,9 @@ const Drawer = () => {
               query: { teamid: "demo" },
             }}
           >
-            <button className="btn btn-info text-white">Manage Tickets</button>
+            <button className="btn btn-secondary text-white">
+              Manage Tickets
+            </button>
           </Link>
         </li>
         <ul className="">
