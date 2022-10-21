@@ -24,8 +24,8 @@ const Ticketpreview = (props: TicketpreviewProps) => {
       className={`card w-96 border-2 border-${bgColor}  m-2 flex flex-col items-start justify-center bg-neutral text-primary-content shadow-xl`}
     >
       <div className="card-body ">
-        <h2 className="card-title ">{props.title}</h2>
-        <p>{props.description}</p>
+        <h2 className="card-title text-primary-content ">{props.title}</h2>
+        <p className="text-primary-content ">{props.description}</p>
         <div className="card-actions justify-start">
           <Link
             href={{
@@ -33,7 +33,7 @@ const Ticketpreview = (props: TicketpreviewProps) => {
               query: { teamid: "demo", ticketid: props.id },
             }}
           >
-            <button className="btn btn-primary text-neutral-content">
+            <button className="btn btn-primary text-primary-content">
               View Ticket
             </button>
           </Link>
