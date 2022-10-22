@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 import { HiOutlineTicket } from "react-icons/hi";
 import Iconbigger from "../../../components/IconBigger/IconBigger";
+import BarGraph from "../../../components/graphs/bargraph/BarGraph";
 
 export async function getServerSideProps() {
   const res = await fetch("https://www.tickettracker.io/api/tickets");
@@ -69,7 +70,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
     <>
       {session ? (
         <>
-          <div className="drawer drawer-mobile">
+          <div className="drawer-mobile drawer">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content mt-20 ml-4 flex flex-col">
               <section className="flex space-x-4">
