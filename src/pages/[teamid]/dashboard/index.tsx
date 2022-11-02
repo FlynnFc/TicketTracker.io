@@ -141,7 +141,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
             >
               {showClose ? <AiOutlineClose /> : <AiOutlineArrowRight />}
             </label>
-            <Drawer />{" "}
+            <Drawer />
           </div>
         </>
       ) : (
