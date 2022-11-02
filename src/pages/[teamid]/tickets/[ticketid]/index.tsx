@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import Navbar from "../../../../components/navbar/Navbar";
 import CommentSection from "../../../../components/commentsection/CommentSection";
 
 import { AiOutlineClose } from "react-icons/ai";
