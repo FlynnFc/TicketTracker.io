@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Drawer from "../../../components/drawer/Drawer";
-import Navbar from "../../../components/navbar/Navbar";
 import { toast, Toaster } from "react-hot-toast";
 import { AiOutlineArrowRight, AiOutlineClose } from "react-icons/ai";
 interface Formdata {

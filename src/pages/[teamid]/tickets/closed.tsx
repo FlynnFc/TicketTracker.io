@@ -1,7 +1,6 @@
 import Navbar from "../../../components/navbar/Navbar";
 import { useSession } from "next-auth/react";
 import React from "react";
-import Miniticket from "../../../components/miniticket/Miniticket";
 import Ticketpreview from "../../../components/ticketpreview/Ticketpreview";
 import Drawer from "../../../components/drawer/Drawer";
 

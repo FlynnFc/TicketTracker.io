@@ -1,4 +1,3 @@
-import Navbar from "../../../components/navbar/Navbar";
 import Ticketpreview from "../../../components/ticketpreview/Ticketpreview";
 import { AiOutlineArrowRight, AiOutlineClose } from "react-icons/ai";
 import Drawer from "../../../components/drawer/Drawer";

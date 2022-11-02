@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../components/navbar/Navbar";
 import TicketManagePreview from "../../../components/ticketpreview/TicketMangePreview";
 import { toast, Toaster } from "react-hot-toast";
 import Modal from "../../../components/modal/Modal";
