@@ -27,13 +27,10 @@ const TicketDetails = () => {
 
   async function ticketFetchIdHandler(ticketid: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const ticketbyid = await fetch(
-      "https://www.tickettracker.io/api/ticketbyid",
-      {
-        method: "GET",
-        headers: { ticketId: ticketid },
-      }
-    );
+    const ticketbyid = await fetch("/api/ticketbyid", {
+      method: "GET",
+      headers: { ticketId: ticketid },
+    });
     if (!ticketbyid.ok) {
       console.log("error");
     }
@@ -45,13 +42,10 @@ const TicketDetails = () => {
   }, [ticketid]);
 
   const closeTicketHandler = async (props: boolean) => {
-    const response = await fetch(
-      "https://www.tickettracker.io/api/editTicket",
-      {
-        method: "PUT",
-        body: JSON.stringify({ completed: props, id: ticketid }),
-      }
-    );
+    const response = await fetch("/api/editTicket", {
+      method: "PUT",
+      body: JSON.stringify({ completed: props, id: ticketid }),
+    });
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -81,7 +75,6 @@ const TicketDetails = () => {
       {pageData && (
         <div className="drawer-mobile drawer">
           <Toaster />
-
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content mt-[5vh] flex flex-col items-center justify-between">
             <div
@@ -172,9 +165,9 @@ const TicketDetails = () => {
               </div>
             </div>
           </div>
-          <div className="drawer-side z-0 overflow-hidden ">
+          <div className="drawer-side overflow-hidden ">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-            <ul className="menu mt-16 w-screen space-y-2 bg-base-300 p-4 text-base-content sm:w-60">
+            <ul className="menu mt-16 w-screen space-y-2  overflow-y-auto bg-base-300 p-4 text-base-content sm:w-60">
               {pageData.completed ? (
                 <>
                   <button onClick={ticketOpener} className="btn btn-error">
@@ -192,11 +185,23 @@ const TicketDetails = () => {
               <li>
                 <Link
                   href={{
-                    pathname: "/[teamid]/tickets/create",
+                    pathname: "/[teamid]/tickets",
                     query: { teamid: "demo" },
                   }}
                 >
                   <button className="btn btn-primary text-white">
+                    Tickets
+                  </button>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={{
+                    pathname: "/[teamid]/tickets/create",
+                    query: { teamid: "demo" },
+                  }}
+                >
+                  <button className="btn btn-info text-white">
                     Create new Ticket
                   </button>
                 </Link>
@@ -208,13 +213,28 @@ const TicketDetails = () => {
                     query: { teamid: "demo" },
                   }}
                 >
-                  <button className="btn btn-info text-white">
+                  <button className="btn btn-secondary text-white">
                     Manage Tickets
                   </button>
                 </Link>
               </li>
+              <ul className="">
+                <li>
+                  <Link
+                    href={{
+                      pathname: "/[teamid]/tickets/closed",
+                      query: { teamid: "demo" },
+                    }}
+                  >
+                    <button className="btn btn-ghost text-white">
+                      Closed Tickets
+                    </button>
+                  </Link>
+                </li>
+              </ul>
             </ul>
           </div>
+          ;
           <label
             onClick={() => {
               setShowClose((prev) => !prev);
@@ -222,7 +242,7 @@ const TicketDetails = () => {
             htmlFor="my-drawer-2"
             className={`btn ${
               showClose ? "btn-error" : "btn-primary"
-            } drawer-button fixed bottom-6 right-6 z-0 sm:hidden lg:hidden`}
+            } drawer-button fixed bottom-6 right-6 z-20 lg:hidden`}
           >
             {showClose ? <AiOutlineClose /> : <FaLongArrowAltRight />}
           </label>
