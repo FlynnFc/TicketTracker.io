@@ -55,12 +55,9 @@ const Index = (props: { ticketprop: newTicketProps }) => {
   }, [props.ticketprop]);
   useEffect(() => {
     const closedFinder = async () => {
-      const res2 = await fetch(
-        "https://www.tickettracker.io/api/closedtickets",
-        {
-          method: "GET",
-        }
-      );
+      const res2 = await fetch("/api/closedtickets", {
+        method: "GET",
+      });
       if (!res2.ok) {
         console.log("error");
       }
@@ -73,7 +70,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
     <>
       {session ? (
         <>
-          <div className="drawer drawer-mobile">
+          <div className="drawer-mobile drawer">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content mt-20 ml-4 flex flex-col">
               <section className="flex space-x-4">

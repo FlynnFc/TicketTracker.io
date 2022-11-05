@@ -4,7 +4,7 @@ import Drawer from "../../../components/drawer/Drawer";
 import { useEffect, useState } from "react";
 
 export async function getServerSideProps() {
-  const res = await fetch("https://www.tickettracker.io/api/tickets");
+  const res = await fetch("/api/tickets");
   if (!res.ok) {
     console.error(res.status);
   }
