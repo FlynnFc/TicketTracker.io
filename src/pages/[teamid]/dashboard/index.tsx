@@ -55,9 +55,12 @@ const Index = (props: { ticketprop: newTicketProps }) => {
   }, [props.ticketprop]);
   useEffect(() => {
     const closedFinder = async () => {
-      const res2 = await fetch("/api/closedtickets", {
-        method: "GET",
-      });
+      const res2 = await fetch(
+        "https://www.tickettracker.io/api/closedtickets",
+        {
+          method: "GET",
+        }
+      );
       if (!res2.ok) {
         console.log("error");
       }

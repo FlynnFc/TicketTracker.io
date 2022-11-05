@@ -38,10 +38,13 @@ const Create = () => {
   };
 
   const submitter = async () => {
-    const response = await fetch("/api/newTickets", {
-      method: "POST",
-      body: JSON.stringify(form),
-    });
+    const response = await fetch(
+      "https://www.tickettracker.io/api/newTickets",
+      {
+        method: "POST",
+        body: JSON.stringify(form),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(response.statusText);

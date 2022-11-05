@@ -22,7 +22,7 @@ type newTicketProps = {
 };
 
 export async function getServerSideProps() {
-  const res = await fetch("/api/closedtickets", {
+  const res = await fetch("https://www.tickettracker.io/api/closedtickets", {
     method: "GET",
   });
   if (!res.ok) {
