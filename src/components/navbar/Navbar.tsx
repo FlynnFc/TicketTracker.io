@@ -3,7 +3,7 @@ import React from "react";
 import { HiOutlineUserAdd, HiOutlineUserGroup } from "react-icons/hi";
 import { AiOutlineProject } from "react-icons/ai";
 import { BiTask } from "react-icons/bi";
-import LoginBtn from "../login-btn/LoginBtn";
+import LoginBtn from "../loginBtn/LoginBtn";
 
 const Navbar = () => {
   return (

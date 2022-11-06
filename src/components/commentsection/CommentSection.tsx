@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Commentinput from "../commentinput/Commentinput";
+import Commentinput from "../commentInput/Commentinput";
 import Comment from "../comment/Comment";
 
 type commentProps = {

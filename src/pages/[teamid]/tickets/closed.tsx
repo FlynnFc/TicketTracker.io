@@ -1,7 +1,7 @@
 import Navbar from "../../../components/navbar/Navbar";
 import { useSession } from "next-auth/react";
 import React from "react";
-import Ticketpreview from "../../../components/ticketpreview/Ticketpreview";
+import Ticketpreview from "../../../components/ticketPreview/Ticketpreview";
 import Drawer from "../../../components/drawer/Drawer";
 
 type newTicketProps = {

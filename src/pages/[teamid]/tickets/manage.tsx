@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TicketManagePreview from "../../../components/ticketpreview/TicketMangePreview";
+import TicketManagePreview from "../../../components/ticketPreview/TicketMangePreview";
 import { toast, Toaster } from "react-hot-toast";
 import Modal from "../../../components/modal/Modal";
 import { AiOutlineArrowRight, AiOutlineClose } from "react-icons/ai";

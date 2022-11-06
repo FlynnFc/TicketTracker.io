@@ -1,4 +1,4 @@
-import Ticketpreview from "../../../components/ticketpreview/Ticketpreview";
+import Ticketpreview from "../../../components/ticketPreview/Ticketpreview";
 import { AiOutlineArrowRight, AiOutlineClose } from "react-icons/ai";
 import Drawer from "../../../components/drawer/Drawer";
 import { useEffect, useState } from "react";

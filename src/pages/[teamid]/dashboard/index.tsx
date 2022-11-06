@@ -11,6 +11,7 @@ import {
 import { HiOutlineTicket } from "react-icons/hi";
 import Iconbigger from "../../../components/IconBigger/IconBigger";
 import BarGraph from "../../../components/graphs/bargraph/BarGraph";
+import MyResponsiveAreaBump from "../../../components/graphTest";
 
 export async function getServerSideProps() {
   const res = await fetch("https://www.tickettracker.io/api/tickets");
@@ -107,6 +108,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
                   </Iconbigger>
                 </div>
               </section>
+              <MyResponsiveAreaBump />
               <section
                 id="minitickets"
                 className="fixed bottom-1 hidden w-full flex-row justify-start md:flex"

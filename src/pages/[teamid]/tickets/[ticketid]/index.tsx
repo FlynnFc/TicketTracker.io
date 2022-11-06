@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import CommentSection from "../../../../components/commentsection/CommentSection";
+import CommentSection from "../../../../components/commentSection/CommentSection";
 
 import { AiOutlineClose } from "react-icons/ai";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -76,7 +76,7 @@ const TicketDetails = () => {
   return (
     <div className="">
       {pageData && (
-        <div className="drawer-mobile drawer">
+        <div className="drawer drawer-mobile">
           <Toaster />
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content mt-[5vh] flex flex-col items-center justify-between">
