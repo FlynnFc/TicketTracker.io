@@ -164,7 +164,7 @@ const TicketDetails = () => {
                   </div>
                 </div>
 
-                <CommentSection id={ticketid} />
+                {/* <CommentSection id={ticketid} /> */}
               </div>
             </div>
           </div>
