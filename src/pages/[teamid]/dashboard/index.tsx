@@ -11,7 +11,7 @@ import {
 import { HiOutlineTicket } from "react-icons/hi";
 import Iconbigger from "../../../components/IconBigger/IconBigger";
 import BarGraph from "../../../components/graphs/bargraph/BarGraph";
-import MyResponsiveAreaBump from "../../../components/graphTest";
+import MyResponsiveBar from "../../../components/graphTest";
 
 export async function getServerSideProps() {
   const res = await fetch("https://www.tickettracker.io/api/tickets");
@@ -76,7 +76,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
         <>
           <div className="drawer-mobile drawer">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content mt-20 ml-4 flex flex-col">
+            <div className="drawer-content mt-20 ml-4 flex flex-col justify-between">
               <section className="flex space-x-4">
                 <div className="flex flex-row items-center justify-center space-y-2 rounded bg-primary p-4 text-primary-content">
                   <div className="mr-8 flex flex-col">
@@ -108,10 +108,14 @@ const Index = (props: { ticketprop: newTicketProps }) => {
                   </Iconbigger>
                 </div>
               </section>
-              <MyResponsiveAreaBump />
+              <section className="flex h-full w-full flex-col justify-center space-x-4 lg:flex-row">
+                <MyResponsiveBar />
+                <MyResponsiveBar />
+              </section>
+
               <section
                 id="minitickets"
-                className="fixed bottom-1 hidden w-full flex-row justify-start md:flex"
+                className="hidden w-full flex-row justify-start md:flex"
               >
                 {props.ticketprop.map(
                   (el: {

@@ -1,172 +1,38 @@
-import { ResponsiveAreaBump } from "@nivo/bump";
+import { ResponsiveBar } from "@nivo/bar";
 
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MyResponsiveAreaBump = () => {
+const MyResponsiveBar = () => {
   const data = [
     {
-      id: "JavaScript",
-      data: [
-        {
-          x: 2000,
-          y: 28,
-        },
-        {
-          x: 2001,
-          y: 24,
-        },
-        {
-          x: 2002,
-          y: 11,
-        },
-        {
-          x: 2003,
-          y: 18,
-        },
-        {
-          x: 2004,
-          y: 20,
-        },
-        {
-          x: 2005,
-          y: 11,
-        },
-      ],
-    },
-    {
-      id: "ReasonML",
-      data: [
-        {
-          x: 2000,
-          y: 12,
-        },
-        {
-          x: 2001,
-          y: 20,
-        },
-        {
-          x: 2002,
-          y: 12,
-        },
-        {
-          x: 2003,
-          y: 13,
-        },
-        {
-          x: 2004,
-          y: 30,
-        },
-        {
-          x: 2005,
-          y: 18,
-        },
-      ],
-    },
-    {
-      id: "TypeScript",
-      data: [
-        {
-          x: 2000,
-          y: 27,
-        },
-        {
-          x: 2001,
-          y: 13,
-        },
-        {
-          x: 2002,
-          y: 30,
-        },
-        {
-          x: 2003,
-          y: 24,
-        },
-        {
-          x: 2004,
-          y: 23,
-        },
-        {
-          x: 2005,
-          y: 17,
-        },
-      ],
-    },
-    {
-      id: "Elm",
-      data: [
-        {
-          x: 2000,
-          y: 13,
-        },
-        {
-          x: 2001,
-          y: 26,
-        },
-        {
-          x: 2002,
-          y: 14,
-        },
-        {
-          x: 2003,
-          y: 11,
-        },
-        {
-          x: 2004,
-          y: 19,
-        },
-        {
-          x: 2005,
-          y: 19,
-        },
-      ],
-    },
-    {
-      id: "CoffeeScript",
-      data: [
-        {
-          x: 2000,
-          y: 30,
-        },
-        {
-          x: 2001,
-          y: 12,
-        },
-        {
-          x: 2002,
-          y: 14,
-        },
-        {
-          x: 2003,
-          y: 17,
-        },
-        {
-          x: 2004,
-          y: 28,
-        },
-        {
-          x: 2005,
-          y: 12,
-        },
-      ],
+      kebab: 49,
+      kebabColor: "hsl(213, 70%, 50%)",
+      active: 96,
+      activeColor: "hsl(79, 70%, 50%)",
+      Completed: 10,
+      CompletedColor: "hsl(79, 40%, 50%)",
     },
   ];
   return (
-    <div className="h-full">
-      <ResponsiveAreaBump
+    <div className="mt-4 h-[70%] w-1/3 items-end rounded-xl bg-base-300 shadow-xl">
+      <ResponsiveBar
         data={data}
-        margin={{ top: 40, right: 100, bottom: 40, left: 100 }}
-        spacing={8}
-        colors={{ scheme: "nivo" }}
-        blendMode="multiply"
+        keys={["Completed", "active", "QA", "unassigned"]}
+        indexBy="country"
+        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+        padding={0.3}
+        valueScale={{ type: "linear" }}
+        indexScale={{ type: "band", round: true }}
+        colors={{ scheme: "set2" }}
         defs={[
           {
             id: "dots",
             type: "patternDots",
             background: "inherit",
-            color: "#38bcb2",
+            color: "#ffff",
             size: 4,
             padding: 1,
             stagger: true,
@@ -175,7 +41,7 @@ const MyResponsiveAreaBump = () => {
             id: "lines",
             type: "patternLines",
             background: "inherit",
-            color: "#eed312",
+            color: "#eff312",
             rotation: -45,
             lineWidth: 6,
             spacing: 10,
@@ -184,38 +50,84 @@ const MyResponsiveAreaBump = () => {
         fill={[
           {
             match: {
-              id: "CoffeeScript",
+              id: "",
             },
             id: "dots",
           },
           {
             match: {
-              id: "TypeScript",
+              id: "",
             },
             id: "lines",
           },
         ]}
-        startLabel="id"
-        endLabel="id"
-        axisTop={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "",
-          legendPosition: "middle",
-          legendOffset: -36,
+        borderColor={{
+          from: "color",
+          modifiers: [["brighter", 1.6]],
         }}
+        axisTop={null}
+        axisRight={null}
         axisBottom={{
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "",
+          legend: "Tikcets",
           legendPosition: "middle",
           legendOffset: 32,
+        }}
+        axisLeft={{
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: 0,
+          legend: "food",
+          legendPosition: "middle",
+          legendOffset: -40,
+        }}
+        labelSkipWidth={12}
+        labelSkipHeight={12}
+        labelTextColor={{
+          from: "color",
+          modifiers: [["darker", 1.6]],
+        }}
+        legends={[
+          {
+            dataFrom: "keys",
+            anchor: "bottom-right",
+            direction: "column",
+            justify: false,
+            translateX: 120,
+            translateY: 0,
+            itemsSpacing: 2,
+            itemWidth: 100,
+            itemHeight: 20,
+            itemDirection: "left-to-right",
+            itemOpacity: 0.85,
+            symbolSize: 20,
+            itemTextColor: "white",
+            effects: [
+              {
+                on: "hover",
+                style: {
+                  itemOpacity: 1,
+                },
+              },
+            ],
+          },
+        ]}
+        role="application"
+        ariaLabel="Bar chart"
+        barAriaLabel={function (e: {
+          id: string;
+          formattedValue: string;
+          indexValue: string;
+        }) {
+          return (
+            e.id + ": " + e.formattedValue + " in country: " + e.indexValue
+          );
         }}
       />
     </div>
   );
 };
 
-export default MyResponsiveAreaBump;
+export default MyResponsiveBar;
