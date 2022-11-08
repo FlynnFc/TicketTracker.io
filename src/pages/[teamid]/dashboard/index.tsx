@@ -104,7 +104,12 @@ const Index = (props: { ticketprop: newTicketProps }) => {
                 </div>
               </section>
               <section className="z-0 flex h-full w-full flex-col items-center justify-center space-x-4 lg:flex-row lg:justify-start">
-                <MyResponsiveBar active={2} qa={3} />
+                <MyResponsiveBar
+                  totalTickets={totalTickets}
+                  completedTickets={completedTickets}
+                  active={2}
+                  qa={3}
+                />
               </section>
 
               <section
