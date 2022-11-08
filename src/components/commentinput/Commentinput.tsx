@@ -1,8 +1,9 @@
-import React, { createRef, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { PrismaClient } from "@prisma/client";
 
 const Commentinput = (props: any) => {
+  const inputRef = useRef<any>();
   const { data: session } = useSession();
   const [commentInfo, setCommentInfo] = useState({
     name: session?.user?.name,
@@ -19,7 +20,7 @@ const Commentinput = (props: any) => {
     if (!response.ok) {
       console.error(response.statusText);
     }
-
+    inputRef.current.value = "";
     setCommentInfo({
       name: session?.user?.name,
       message: commentInfo.message,
@@ -33,6 +34,7 @@ const Commentinput = (props: any) => {
   return (
     <div className="flex w-full flex-row items-stretch justify-center">
       <input
+        ref={inputRef}
         onChange={(e) =>
           setCommentInfo({ ...commentInfo, message: e.target.value })
         }
