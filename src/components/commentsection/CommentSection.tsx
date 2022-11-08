@@ -50,11 +50,11 @@ const CommentSection = (props: { id: any }) => {
               );
             })}
         </div>
-        <Commentinput
+        {/* <Commentinput
           comments={comments}
           setComments={setComments}
           id={props.id}
-        />
+        /> */}
       </div>
     </div>
   );

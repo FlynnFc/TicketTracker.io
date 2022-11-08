@@ -76,7 +76,7 @@ const TicketDetails = () => {
   return (
     <div className="">
       {pageData && (
-        <div className="drawer drawer-mobile">
+        <div className="drawer-mobile drawer">
           <Toaster />
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content mt-[5vh] flex flex-col items-center justify-between">
@@ -164,7 +164,7 @@ const TicketDetails = () => {
                   </div>
                 </div>
 
-                {/* <CommentSection id={ticketid} /> */}
+                <CommentSection id={ticketid} />
               </div>
             </div>
           </div>
