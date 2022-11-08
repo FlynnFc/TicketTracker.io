@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Comment from "../comment/Comment";
-import Commentinput from "../commentInput/Commentinput";
+import Commentinput from "../commentinput/Commentinput";
 
 type commentProps = {
   map(arg0: (el: commentProps) => JSX.Element): React.ReactNode;
