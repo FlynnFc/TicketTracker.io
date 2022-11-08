@@ -167,7 +167,7 @@ const TicketDetails = () => {
           </div>
           <div className="drawer-side overflow-hidden ">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-            <ul className="menu mt-16 w-screen space-y-2  overflow-y-auto bg-base-300 p-4 text-base-content sm:w-60">
+            <ul className="menu mt-16 w-screen  space-y-2 overflow-y-auto bg-base-300 p-4 text-base-content sm:w-60">
               {pageData.completed ? (
                 <>
                   <button onClick={ticketOpener} className="btn btn-error">
@@ -234,7 +234,7 @@ const TicketDetails = () => {
               </ul>
             </ul>
           </div>
-          ;
+
           <label
             onClick={() => {
               setShowClose((prev) => !prev);
