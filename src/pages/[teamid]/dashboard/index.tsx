@@ -12,7 +12,7 @@ import Iconbigger from "../../../components/IconBigger/IconBigger";
 import MyResponsiveBar from "../../../components/MyResponsiveBar";
 
 export async function getServerSideProps() {
-  const res = await fetch("/api/tickets");
+  const res = await fetch("https://www.tickettracker.io/api/tickets");
   if (!res.ok) {
     console.log("error");
   }

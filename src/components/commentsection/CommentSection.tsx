@@ -18,7 +18,7 @@ const CommentSection = (props: { id: any }) => {
 
   useEffect(() => {
     const commentHandler = async () => {
-      const res = await fetch("/api/comments", {
+      const res = await fetch("https://www.tickettracker.io/api/comments", {
         method: "GET",
         headers: { ticketId: props.id },
       });
