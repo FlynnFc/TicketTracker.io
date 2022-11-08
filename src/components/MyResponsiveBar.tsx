@@ -1,5 +1,5 @@
 import { ResponsiveBar } from "@nivo/bar";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
@@ -9,7 +9,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 
 type TicketData = {
   completedTickets: number;
-  totalTickets: any;
+  totalTickets: number;
   Active: number;
   qa: number;
 };
@@ -128,6 +128,3 @@ const MyResponsiveBar = (props: TicketData) => {
 };
 
 export default MyResponsiveBar;
-function useLayEffect() {
-  throw new Error("Function not implemented.");
-}
