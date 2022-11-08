@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Miniticket from "../../../components/miniticket/Miniticket";
-import Navbar from "../../../components/navbar/Navbar";
 import { useSession } from "next-auth/react";
 import Drawer from "../../../components/drawer/Drawer";
 import {
@@ -10,11 +9,10 @@ import {
 } from "react-icons/ai";
 import { HiOutlineTicket } from "react-icons/hi";
 import Iconbigger from "../../../components/IconBigger/IconBigger";
-import BarGraph from "../../../components/graphs/bargraph/BarGraph";
-import MyResponsiveBar from "../../../components/graphTest";
+import MyResponsiveBar from "../../../components/MyResponsiveBar";
 
 export async function getServerSideProps() {
-  const res = await fetch("https://www.tickettracker.io/api/tickets");
+  const res = await fetch("http://localhost:3000/api/tickets");
   if (!res.ok) {
     console.log("error");
   }
@@ -56,12 +54,9 @@ const Index = (props: { ticketprop: newTicketProps }) => {
   }, [props.ticketprop]);
   useEffect(() => {
     const closedFinder = async () => {
-      const res2 = await fetch(
-        "https://www.tickettracker.io/api/closedtickets",
-        {
-          method: "GET",
-        }
-      );
+      const res2 = await fetch("/api/closedtickets", {
+        method: "GET",
+      });
       if (!res2.ok) {
         console.log("error");
       }
@@ -77,7 +72,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
           <div className="drawer-mobile drawer">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content mt-20 ml-4 flex flex-col justify-between">
-              <section className="flex space-x-4">
+              <section className="z-10 flex space-x-4 lg:static">
                 <div className="flex flex-row items-center justify-center space-y-2 rounded bg-primary p-4 text-primary-content">
                   <div className="mr-8 flex flex-col">
                     <h4 className="text-2xl">Project Status</h4>
@@ -108,9 +103,8 @@ const Index = (props: { ticketprop: newTicketProps }) => {
                   </Iconbigger>
                 </div>
               </section>
-              <section className="flex h-full w-full flex-col justify-center space-x-4 lg:flex-row">
-                <MyResponsiveBar />
-                <MyResponsiveBar />
+              <section className="z-0 flex h-full w-full flex-col items-center justify-center space-x-4 lg:flex-row lg:justify-start">
+                <MyResponsiveBar active={2} qa={3} />
               </section>
 
               <section
