@@ -107,7 +107,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
                 <MyResponsiveBar
                   totalTickets={totalTickets}
                   completedTickets={completedTickets}
-                  active={2}
+                  Active={2}
                   qa={3}
                 />
               </section>

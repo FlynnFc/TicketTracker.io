@@ -121,15 +121,6 @@ const MyResponsiveBar = (props: TicketData) => {
           ]}
           role="application"
           ariaLabel="Bar chart"
-          barAriaLabel={function (e: {
-            id: string;
-            formattedValue: string;
-            indexValue: string;
-          }) {
-            return (
-              e.id + ": " + e.formattedValue + " in country: " + e.indexValue
-            );
-          }}
         />
       )}
     </div>
