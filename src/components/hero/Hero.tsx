@@ -13,16 +13,7 @@ const Hero = () => {
           </p>
           <section className="py-6 ">
             <p className="text-base ">
-              This site is still currently in early development. You can follow
-              progress on the site on
-              <a
-                className="font-bold"
-                target="_blank"
-                href="https://dev.to/flynnfc"
-                rel="noreferrer"
-              >
-                this blog
-              </a>
+              This site is still currently in early development.
             </p>
           </section>
           <Link href={"demo/dashboard"}>
