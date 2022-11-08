@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import CommentSection from "../../../../components/commentSection/CommentSection";
 
 import { AiOutlineClose } from "react-icons/ai";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useState } from "react";
 import Link from "next/link";
 import { toast, Toaster } from "react-hot-toast";
+import CommentSection from "../../../../components/commentsection/CommentSection";
 
 type TicketProps = {
   title: string;
