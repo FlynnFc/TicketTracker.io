@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { useSession } from "next-auth/react";
-import { PrismaClient } from "@prisma/client";
 
 const Commentinput = (props: any) => {
   const inputRef = useRef<any>();
