@@ -17,7 +17,7 @@ const MyResponsiveBar = (props: TicketData) => {
   const [data, setData] = useState({});
   useEffect(() => {
     return setData({
-      unassigned: 2,
+      unassigned: 1,
       unassignedColor: "hsl(213, 70%, 50%)",
       QA: props.qa,
       QAColor: "hsl(213, 70%, 50%)",
