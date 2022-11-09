@@ -64,7 +64,7 @@ const TicketTypeBar = (props: any) => {
               itemsSpacing: 0,
               itemWidth: 100,
               itemHeight: 18,
-              itemTextColor: "#fff",
+              itemTextColor: "#ffffff",
               itemDirection: "left-to-right",
               itemOpacity: 1,
               symbolSize: 18,
