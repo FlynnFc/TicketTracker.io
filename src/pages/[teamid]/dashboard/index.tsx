@@ -110,12 +110,8 @@ const Index = (props: { ticketprop: newTicketProps }) => {
               Active={2}
               qa={3}
             />
-            <div
-              className="tooltip box-border h-full w-full"
-              data-tip="currently using seed data"
-            >
-              <TicketTypeBar data={ticketType} />
-            </div>
+
+            <TicketTypeBar data={ticketType} />
           </section>
 
           <section
