@@ -97,6 +97,7 @@ const MyResponsiveBar = (props: TicketData) => {
               itemDirection: "left-to-right",
               itemOpacity: 0.85,
               symbolSize: 20,
+              itemTextColor: "#fff",
               effects: [
                 {
                   on: "hover",

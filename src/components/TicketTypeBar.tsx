@@ -54,56 +54,6 @@ const TicketTypeBar = (props: any) => {
               spacing: 10,
             },
           ]}
-          fill={[
-            {
-              match: {
-                id: "ruby",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "c",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "go",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "python",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "scala",
-              },
-              id: "lines",
-            },
-            {
-              match: {
-                id: "lisp",
-              },
-              id: "lines",
-            },
-            {
-              match: {
-                id: "elixir",
-              },
-              id: "lines",
-            },
-            {
-              match: {
-                id: "javascript",
-              },
-              id: "lines",
-            },
-          ]}
           legends={[
             {
               anchor: "bottom",
@@ -117,6 +67,7 @@ const TicketTypeBar = (props: any) => {
               itemTextColor: "#999",
               itemDirection: "left-to-right",
               itemOpacity: 1,
+              itemTextColor: "#fff",
               symbolSize: 18,
               symbolShape: "circle",
               effects: [
