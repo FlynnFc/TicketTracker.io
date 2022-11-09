@@ -107,14 +107,19 @@ const Index = (props: { ticketprop: newTicketProps }) => {
                   </Iconbigger>
                 </div>
               </section>
-              <section className="z-0 flex h-full w-full flex-col items-center justify-center space-x-4 lg:flex-row lg:justify-start">
+              <section className="z-0 flex h-full w-full flex-col items-center justify-center lg:flex-row lg:justify-start lg:space-x-4">
                 <MyResponsiveBar
                   totalTickets={totalTickets}
                   completedTickets={completedTickets}
                   Active={2}
                   qa={3}
                 />
-                <TicketTypeBar data={ticketType} />
+                <div
+                  className="tooltip box-border h-full w-full"
+                  data-tip="currently using seed data"
+                >
+                  <TicketTypeBar data={ticketType} />
+                </div>
               </section>
 
               <section

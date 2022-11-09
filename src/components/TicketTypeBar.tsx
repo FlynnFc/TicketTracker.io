@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 
 const TicketTypeBar = (props: any) => {
   const [data, setData] = useState([
-    { id: "Bug", value: 1, color: "hsl(13, 70%, 50%)", label: "Bug" },
-    { id: "Feature", value: 1, color: "hsl(13, 70%, 50%)", label: "Feature" },
+    { id: "Bug", value: 2, color: "hsl(13, 70%, 50%)", label: "Bug" },
+    { id: "Feature", value: 3, color: "hsl(13, 70%, 50%)", label: "Feature" },
     { id: "Support", value: 1, color: "hsl(13, 70%, 50%)", label: "Support" },
     { id: "Task", value: 1, color: "hsl(13, 70%, 50%)", label: "Task" },
   ]);
 
   return (
-    <div className="mb-4 mt-4 h-[95%] w-[55%] items-end rounded-xl bg-stone-200 shadow-xl">
+    <div className="mb-4 mt-4 h-[95%] min-w-[24rem] items-end rounded-xl bg-base-300 shadow-xl lg:w-[47%]">
       {data && (
         <ResponsivePie
           data={data}
@@ -26,7 +26,7 @@ const TicketTypeBar = (props: any) => {
             modifiers: [["darker", 0.2]],
           }}
           arcLinkLabelsSkipAngle={10}
-          arcLinkLabelsTextColor="#333333"
+          arcLinkLabelsTextColor="#fff"
           arcLinkLabelsThickness={2}
           arcLinkLabelsColor={{ from: "color" }}
           arcLabelsSkipAngle={10}

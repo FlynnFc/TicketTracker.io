@@ -29,7 +29,7 @@ const MyResponsiveBar = (props: TicketData) => {
   }, [props]);
 
   return (
-    <div className="mb-4 mt-4 h-[95%] w-96 items-end rounded-xl bg-stone-200 shadow-xl">
+    <div className="mb-4 mt-4 h-[95%] w-96 items-end rounded-xl bg-base-300 text-base-content shadow-xl">
       {data && (
         <ResponsiveBar
           data={[data]}
@@ -80,20 +80,9 @@ const MyResponsiveBar = (props: TicketData) => {
           }}
           axisTop={null}
           axisRight={null}
-          axisBottom={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: "Tikcets",
-            legendPosition: "middle",
-            legendOffset: 32,
-          }}
           labelSkipWidth={12}
           labelSkipHeight={12}
-          labelTextColor={{
-            from: "color",
-            modifiers: [["darker", 1.6]],
-          }}
+          labelTextColor="#fff"
           legends={[
             {
               dataFrom: "keys",
