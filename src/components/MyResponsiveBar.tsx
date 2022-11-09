@@ -28,7 +28,6 @@ const MyResponsiveBar = (props: TicketData) => {
     });
   }, [props]);
 
-  console.log(props);
   return (
     <div className="mb-4 mt-4 h-[95%] w-96 items-end rounded-xl bg-stone-200 shadow-xl">
       {data && (

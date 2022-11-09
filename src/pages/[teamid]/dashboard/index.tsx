@@ -10,6 +10,7 @@ import {
 import { HiOutlineTicket } from "react-icons/hi";
 import Iconbigger from "../../../components/IconBigger/IconBigger";
 import MyResponsiveBar from "../../../components/MyResponsiveBar";
+import TicketTypeBar from "../../../components/TicketTypeBar";
 
 export async function getServerSideProps() {
   const res = await fetch("https://www.tickettracker.io/api/tickets");
@@ -48,6 +49,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
   const [showClose, setShowClose] = useState(false);
   const [totalTickets, setTotalTickets] = useState(0);
   const [completedTickets, setCompletedTickets] = useState(0);
+  const [ticketType, setTicketType] = useState<any>();
   const { data: session } = useSession();
   useEffect(() => {
     setTotalTickets(() => props.ticketprop.length);
@@ -61,10 +63,12 @@ const Index = (props: { ticketprop: newTicketProps }) => {
         console.log("error");
       }
       const data2 = await res2.json();
+      setTicketType(props.ticketprop);
       setCompletedTickets(() => data2.length);
     };
     closedFinder();
-  }, []);
+  }, [props.ticketprop]);
+
   return (
     <>
       {session ? (
@@ -110,6 +114,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
                   Active={2}
                   qa={3}
                 />
+                <TicketTypeBar data={ticketType} />
               </section>
 
               <section
