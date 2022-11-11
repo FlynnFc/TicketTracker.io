@@ -6,13 +6,13 @@ type commentProps = {
   map(arg0: (el: commentProps) => JSX.Element): React.ReactNode;
   avatar: string;
   date: string;
-  id: string;
+  id: any;
   message: string;
   name: string;
   ticketId: string;
 };
 
-const CommentSection = (props: { id: string }) => {
+const CommentSection = (props: { id: any }) => {
   const [comments, setComments] = useState<commentProps>();
 
   useEffect(() => {
