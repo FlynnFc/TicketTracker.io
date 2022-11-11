@@ -1,9 +1,19 @@
 import React, { useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 
+type commentProps = {
+  map(arg0: (el: commentProps) => JSX.Element): React.ReactNode;
+  avatar: string;
+  date: string;
+  id: string;
+  message: string;
+  name: string;
+  ticketId: string;
+};
+
 const Commentinput = (props: {
   id: string;
-  comments: string[];
+  comments: any;
   setComments: any;
 }) => {
   const inputRef = useRef<any>();

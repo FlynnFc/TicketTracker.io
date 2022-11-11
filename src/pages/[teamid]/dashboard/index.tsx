@@ -111,7 +111,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
               qa={3}
             />
 
-            <TicketTypeBar data={ticketType} />
+            <TicketTypeBar />
           </section>
 
           <section
