@@ -1,9 +1,8 @@
 import { getProviders, signIn } from "next-auth/react";
 
-import styles from "../../styles/Signin.module.css";
 import { FcGoogle } from "react-icons/fc";
 import Iconbigger from "../../components/IconBigger/IconBigger";
-export default function SignIn(props: { providers: any }) {
+export default function SignIn(props: { providers: object }) {
   console.log(props.providers);
   return (
     <div
@@ -32,25 +31,27 @@ export default function SignIn(props: { providers: any }) {
         </div>
 
         {props.providers &&
-          Object.values(props.providers).map((provider: any) => (
-            <div
-              className="mt-2 flex w-full justify-center"
-              key={provider.name}
-              style={{ marginBottom: 0 }}
-            >
+          Object.values(props.providers).map(
+            (provider: { id: string; name: string }) => (
               <div
-                className="btn btn-lg"
-                onClick={() =>
-                  signIn(provider.id, { callbackUrl: "/demo/dashboard" })
-                }
+                className="mt-2 flex w-full justify-center"
+                key={provider.name}
+                style={{ marginBottom: 0 }}
               >
-                Sign in with {provider.name}
-                <Iconbigger>
-                  <FcGoogle className="mx-4 inline" />
-                </Iconbigger>
+                <div
+                  className="btn btn-lg"
+                  onClick={() =>
+                    signIn(provider.id, { callbackUrl: "/demo/dashboard" })
+                  }
+                >
+                  Sign in with {provider.name}
+                  <Iconbigger>
+                    <FcGoogle className="mx-4 inline" />
+                  </Iconbigger>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
       </div>
     </div>
   );

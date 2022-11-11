@@ -12,7 +12,7 @@ type commentProps = {
   ticketId: string;
 };
 
-const CommentSection = (props: { id: any }) => {
+const CommentSection = (props: { id: string }) => {
   const [comments, setComments] = useState<commentProps>();
 
   useEffect(() => {

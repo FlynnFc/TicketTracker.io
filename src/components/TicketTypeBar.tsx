@@ -1,9 +1,9 @@
 import { ResponsivePie } from "@nivo/pie";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const TicketTypeBar = (props: any) => {
-  const [data, setData] = useState([
+const TicketTypeBar = () => {
+  const [data] = useState([
     { id: "Bug", value: 2, color: "hsl(13, 70%, 50%)", label: "Bug" },
     { id: "Feature", value: 3, color: "hsl(13, 70%, 50%)", label: "Feature" },
     { id: "Support", value: 1, color: "hsl(13, 70%, 50%)", label: "Support" },
