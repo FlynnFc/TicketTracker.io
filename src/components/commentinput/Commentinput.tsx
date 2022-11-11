@@ -3,8 +3,8 @@ import { useSession } from "next-auth/react";
 
 const Commentinput = (props: {
   id: string;
-  comments: [];
-  setComments: () => void;
+  comments: string[];
+  setComments: any;
 }) => {
   const inputRef = useRef<any>();
   const { data: session } = useSession();
