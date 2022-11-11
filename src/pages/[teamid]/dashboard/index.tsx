@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Miniticket from "../../../components/miniticket/Miniticket";
-import { useSession } from "next-auth/react";
 import Drawer from "../../../components/drawer/Drawer";
 import {
   AiOutlineClose,
@@ -27,7 +26,14 @@ export async function getServerSideProps() {
 }
 
 type newTicketProps = {
-  forEach(arg0: (el: any) => void): unknown;
+  forEach(
+    arg0: (el: {
+      priority: string;
+      description: string;
+      title: string;
+      id: string;
+    }) => void
+  ): unknown;
   length: number;
   map(
     arg0: (el: {
@@ -49,8 +55,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
   const [showClose, setShowClose] = useState(false);
   const [totalTickets, setTotalTickets] = useState(0);
   const [completedTickets, setCompletedTickets] = useState(0);
-  const [ticketType, setTicketType] = useState<any>();
-  const { data: session } = useSession();
+  const [, setTicketType] = useState<object>();
   useEffect(() => {
     setTotalTickets(() => props.ticketprop.length);
   }, [props.ticketprop]);
@@ -71,7 +76,7 @@ const Index = (props: { ticketprop: newTicketProps }) => {
 
   return (
     <>
-      <div className="drawer drawer-mobile">
+      <div className="drawer-mobile drawer">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content mt-20 ml-4 flex flex-col justify-between">
           <section className="z-10 flex space-x-4 lg:static">
