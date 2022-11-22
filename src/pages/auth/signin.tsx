@@ -10,9 +10,7 @@ export default function SignIn(props: { providers: object }) {
       style={{ overflow: "hidden", position: "relative" }}
     >
       <div className="mb-10 flex w-96 flex-col items-center justify-start rounded-md bg-base-200 p-6 shadow-lg shadow-base-300">
-        <h1 className="pb-4 text-3xl font-bold text-primary-content">
-          Sign in
-        </h1>
+        <h1 className="pb-4 text-3xl font-bold text-base-content">Sign in</h1>
         <div className="my-2 w-full space-y-2 border-b-2 border-base-100 pb-4">
           <p className="text-error">Email sign in not available</p>
           <input
